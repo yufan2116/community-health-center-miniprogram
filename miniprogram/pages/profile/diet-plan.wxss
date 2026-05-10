@@ -1,0 +1,59 @@
+.page-diet {
+  padding-top: 8rpx;
+}
+
+.hint-line {
+  font-size: 26rpx;
+  line-height: 1.55;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.diet-row {
+  margin-bottom: 16rpx;
+}
+
+.diet-input {
+  width: 100%;
+  padding: 20rpx;
+  background: #f8fafb;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #e2e8f0;
+}
+
+.state-t {
+  text-align: center;
+  padding: 40rpx 24rpx;
+  font-size: 28rpx;
+}
+
+.plan-card {
+  margin-top: 8rpx;
+}
+
+.plan-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #0d7377;
+  margin-bottom: 12rpx;
+}
+
+.plan-meta {
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.plan-body {
+  font-size: 30rpx;
+  color: #334155;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.plan-extra {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+}

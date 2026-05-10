@@ -1,0 +1,42 @@
+@import "../login/login.wxss";
+
+.admin-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 120rpx;
+  padding: 22rpx;
+  background: #f8fafb;
+  border-radius: 12rpx;
+  border: 1rpx solid #e2e8f0;
+  font-size: 28rpx;
+}
+
+.admin-textarea.large {
+  min-height: 280rpx;
+}
+
+.picker-like {
+  line-height: normal;
+}
+
+.pub-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28rpx;
+  padding: 8rpx 0;
+}
+
+.btn-del {
+  margin-top: 24rpx;
+  background: #fef2f2;
+  color: #b91c1c;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 22rpx;
+  border: 1rpx solid #fecaca;
+}
+
+.btn-del::after {
+  border: none;
+}

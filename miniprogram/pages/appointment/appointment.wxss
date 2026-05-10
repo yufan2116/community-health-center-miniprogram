@@ -1,0 +1,39 @@
+.page-appointment {
+  padding-top: 8rpx;
+}
+
+.form-card {
+  margin-top: 0;
+}
+
+.form-tip {
+  margin-bottom: 24rpx;
+  line-height: 1.5;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f1f5f5;
+}
+
+.form-label {
+  width: 140rpx;
+  flex-shrink: 0;
+  color: #334155;
+  font-size: 28rpx;
+}
+
+.form-input {
+  flex: 1;
+  font-size: 28rpx;
+  padding: 12rpx 0;
+}
+
+.form-picker {
+  flex: 1;
+  font-size: 28rpx;
+  color: #0f172a;
+  padding: 12rpx 0;
+}

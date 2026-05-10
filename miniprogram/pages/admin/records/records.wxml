@@ -1,0 +1,33 @@
+<view class="container admin-page">
+  <view class="card">
+    <button class="btn-primary" bindtap="exportCsv">复制全部档案为 CSV</button>
+    <text class="text-muted export-hint">演示：通过剪贴板导出，非文件下载。</text>
+  </view>
+
+  <view wx:if="{{loading}}" class="text-muted state-center">加载中…</view>
+
+  <view class="card item-card" wx:for="{{list}}" wx:key="_id">
+    <view class="rec-name">{{item.name}} · {{item.phone}}</view>
+    <view class="row-line">
+      <text class="k">性别/年龄</text>
+      <text class="v">{{item.gender}} / {{item.age}}</text>
+    </view>
+    <view class="row-line">
+      <text class="k">血压</text>
+      <text class="v">{{item.bloodPressure}}</text>
+    </view>
+    <view class="row-line">
+      <text class="k">慢病</text>
+      <text class="v">{{item.chronic}}</text>
+    </view>
+    <view class="row-line">
+      <text class="k">最近就诊</text>
+      <text class="v">{{item.lastVisit}}</text>
+    </view>
+    <view class="note-line text-muted">{{item.note}}</view>
+  </view>
+
+  <view wx:if="{{!loading && list.length===0}}" class="text-muted state-center">
+    暂无档案，可在后台「初始化演示数据」
+  </view>
+</view>

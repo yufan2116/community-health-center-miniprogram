@@ -1,0 +1,45 @@
+<view class="container admin-page">
+  <view class="card">
+    <view class="admin-field">
+      <text class="admin-label">标题</text>
+      <input
+        class="admin-input"
+        placeholder="标题"
+        value="{{title}}"
+        bindinput="onTitle"
+      />
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">摘要</text>
+      <textarea
+        class="admin-textarea"
+        placeholder="列表摘要"
+        value="{{summary}}"
+        maxlength="300"
+        bindinput="onSummary"
+      />
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">正文</text>
+      <textarea
+        class="admin-textarea large"
+        placeholder="正文内容"
+        value="{{content}}"
+        maxlength="8000"
+        bindinput="onContent"
+      />
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">日期</text>
+      <picker mode="date" value="{{date}}" bindchange="onDatePick">
+        <view class="admin-input picker-like">{{date || '选择日期'}}</view>
+      </picker>
+    </view>
+    <view class="pub-row">
+      <text class="admin-label">发布到居民端</text>
+      <switch checked="{{published}}" bindchange="onPub" />
+    </view>
+    <button class="btn-primary" loading="{{saving}}" bindtap="save">保存</button>
+    <button wx:if="{{_id}}" class="btn-del" bindtap="remove">删除</button>
+  </view>
+</view>

@@ -1,0 +1,38 @@
+<view class="container page-diet">
+  <view class="card">
+    <view class="card-title">查询说明</view>
+    <text class="text-muted hint-line">
+      食疗方案由管理员在后台为您生成，通过预约手机号关联（演示）。
+    </text>
+    <view class="form-row diet-row">
+      <input
+        class="diet-input"
+        type="number"
+        maxlength="11"
+        placeholder="预约使用的11位手机号"
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+      />
+    </view>
+    <button class="btn-primary" bindtap="onQuery" loading="{{loading}}">
+      查询方案
+    </button>
+  </view>
+
+  <view wx:if="{{loading}}" class="text-muted state-t">加载中…</view>
+
+  <view wx:if="{{!loading && plan}}" class="card plan-card">
+    <view class="plan-title">{{plan.title || '个性化食疗方案'}}</view>
+    <view class="text-muted plan-meta" wx:if="{{plan.residentName}}">
+      居民：{{plan.residentName}}
+    </view>
+    <view class="plan-body">{{plan.advice || plan.content || ''}}</view>
+    <view class="text-muted plan-extra" wx:if="{{plan.linkedRecipe}}">
+      参考菜谱：{{plan.linkedRecipe}}
+    </view>
+  </view>
+
+  <view wx:if="{{!loading && !plan && emptyHint}}" class="text-muted state-t">
+    {{emptyHint}}
+  </view>
+</view>

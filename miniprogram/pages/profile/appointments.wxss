@@ -1,0 +1,54 @@
+.page-appt-list {
+  padding-top: 8rpx;
+}
+
+.state {
+  text-align: center;
+  padding: 80rpx 24rpx;
+  font-size: 28rpx;
+}
+
+.appt-card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(13, 115, 119, 0.06);
+  border-top: 4rpx solid #0d7377;
+}
+
+.appt-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12rpx 0;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #f8fafb;
+}
+
+.appt-row:last-of-type {
+  border-bottom: none;
+}
+
+.appt-label {
+  color: #64748b;
+}
+
+.appt-value {
+  color: #0f172a;
+  max-width: 420rpx;
+  text-align: right;
+}
+
+.appt-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16rpx;
+  padding-top: 12rpx;
+  border-top: 1rpx dashed #e2e8f0;
+}
+
+.appt-id {
+  font-size: 22rpx;
+  word-break: break-all;
+}

@@ -1,0 +1,68 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/services/services",
+    "pages/appointment/appointment",
+    "pages/education/education",
+    "pages/profile/profile",
+    "pages/education/detail",
+    "pages/profile/appointments",
+    "pages/profile/feedback",
+    "pages/profile/diet-plan",
+    "pages/admin/login/login",
+    "pages/admin/dashboard/dashboard",
+    "pages/admin/appointments/appointments",
+    "pages/admin/records/records",
+    "pages/admin/articles/articles",
+    "pages/admin/article-edit/article-edit",
+    "pages/admin/recipes/recipes",
+    "pages/admin/diet-plans/diet-plans"
+  ],
+  "window": {
+    "backgroundColor": "#f0f4f3",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "南湖凤岭北社区卫服",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#5c6b7a",
+    "selectedColor": "#0d7377",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab/tab-home.png",
+        "selectedIconPath": "images/tab/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/services/services",
+        "text": "服务",
+        "iconPath": "images/tab/tab-service.png",
+        "selectedIconPath": "images/tab/tab-service-active.png"
+      },
+      {
+        "pagePath": "pages/appointment/appointment",
+        "text": "预约",
+        "iconPath": "images/tab/tab-appointment.png",
+        "selectedIconPath": "images/tab/tab-appointment-active.png"
+      },
+      {
+        "pagePath": "pages/education/education",
+        "text": "宣教",
+        "iconPath": "images/tab/tab-education.png",
+        "selectedIconPath": "images/tab/tab-education-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab/tab-profile.png",
+        "selectedIconPath": "images/tab/tab-profile-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

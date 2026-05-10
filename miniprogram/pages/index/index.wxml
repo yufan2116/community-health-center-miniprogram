@@ -1,0 +1,69 @@
+<view class="container page-home">
+  <view class="hero">
+    <view class="hero-decor"></view>
+    <view class="hero-title">{{centerName}}</view>
+    <view class="hero-sub">基本医疗 · 公共卫生 · 家庭医生签约（演示）</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">中心简介</view>
+    <text class="intro-text">{{intro}}</text>
+  </view>
+
+  <view class="card">
+    <view class="card-title">通知公告</view>
+    <view class="notice-item" wx:for="{{notices}}" wx:key="id">
+      <view class="notice-dot"></view>
+      <view class="notice-body">
+        <text class="notice-title">{{item.title}}</text>
+        <text class="notice-date text-muted">{{item.date}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card quick-card">
+    <view class="card-title">快捷入口</view>
+    <view class="quick-list">
+      <view class="quick-row" data-url="/pages/services/services" bindtap="goTab">
+        <view class="quick-badge">
+          <image class="quick-badge-img" src="/images/home/icon-service.svg" mode="aspectFit" />
+        </view>
+        <view class="quick-row-main">
+          <text class="quick-row-title">服务项目</text>
+          <text class="quick-row-desc text-muted">疫苗、儿保、慢病、体检等</text>
+        </view>
+        <image class="quick-row-arrow" src="/images/arrow.svg" mode="aspectFit" />
+      </view>
+      <view class="quick-row" data-url="/pages/appointment/appointment" bindtap="goTab">
+        <view class="quick-badge quick-badge-alt">
+          <image class="quick-badge-img" src="/images/home/icon-appointment.svg" mode="aspectFit" />
+        </view>
+        <view class="quick-row-main">
+          <text class="quick-row-title">在线预约</text>
+          <text class="quick-row-desc text-muted">填写信息提交预约</text>
+        </view>
+        <image class="quick-row-arrow" src="/images/arrow.svg" mode="aspectFit" />
+      </view>
+      <view class="quick-row" data-url="/pages/education/education" bindtap="goTab">
+        <view class="quick-badge quick-badge-alt2">
+          <image class="quick-badge-img" src="/images/home/icon-education.svg" mode="aspectFit" />
+        </view>
+        <view class="quick-row-main">
+          <text class="quick-row-title">健康宣教</text>
+          <text class="quick-row-desc text-muted">科普文章与学习资料</text>
+        </view>
+        <image class="quick-row-arrow" src="/images/arrow.svg" mode="aspectFit" />
+      </view>
+      <view class="quick-row quick-row-last" data-url="/pages/profile/profile" bindtap="goTab">
+        <view class="quick-badge quick-badge-alt3">
+          <image class="quick-badge-img" src="/images/home/icon-profile.svg" mode="aspectFit" />
+        </view>
+        <view class="quick-row-main">
+          <text class="quick-row-title">个人中心</text>
+          <text class="quick-row-desc text-muted">预约记录与意见反馈</text>
+        </view>
+        <image class="quick-row-arrow" src="/images/arrow.svg" mode="aspectFit" />
+      </view>
+    </view>
+  </view>
+</view>

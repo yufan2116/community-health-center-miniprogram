@@ -1,0 +1,27 @@
+<view class="container admin-page">
+  <view class="card">
+    <button class="btn-primary" bindtap="add">新增文章</button>
+  </view>
+
+  <view wx:if="{{loading}}" class="text-muted state-center">加载中…</view>
+
+  <view
+    class="card item-card"
+    wx:for="{{list}}"
+    wx:key="_id"
+    data-id="{{item._id}}"
+    bindtap="edit"
+  >
+    <view class="art-head">
+      <text class="art-title">{{item.title}}</text>
+      <text class="pub-tag" wx:if="{{item.published}}">已发布</text>
+      <text class="draft-tag" wx:else>草稿</text>
+    </view>
+    <text class="text-muted art-sum">{{item.summary}}</text>
+    <text class="text-muted art-date">{{item.date}}</text>
+  </view>
+
+  <view wx:if="{{!loading && list.length===0}}" class="text-muted state-center">
+    暂无文章
+  </view>
+</view>

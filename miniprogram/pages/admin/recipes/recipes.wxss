@@ -1,0 +1,22 @@
+@import "../article-edit/article-edit.wxss";
+
+.rec-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #0d7377;
+  margin-bottom: 8rpx;
+}
+
+.rec-tags {
+  font-size: 24rpx;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.rec-block {
+  font-size: 26rpx;
+  color: #334155;
+  line-height: 1.55;
+  display: block;
+  margin-top: 8rpx;
+}

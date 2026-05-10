@@ -1,0 +1,8 @@
+<view class="container page-detail" wx:if="{{article}}">
+  <view class="detail-header">
+    <view class="detail-title">{{article.title}}</view>
+    <view class="detail-meta text-muted">{{article.date}}</view>
+  </view>
+  <view class="detail-body">{{article.content}}</view>
+  <view class="detail-footer text-muted">— 演示内容 · 非医疗建议 —</view>
+</view>

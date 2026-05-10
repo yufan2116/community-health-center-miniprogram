@@ -1,0 +1,63 @@
+<view class="container page-appointment">
+  <view class="card form-card">
+    <view class="card-title">填写预约信息</view>
+    <view class="text-muted form-tip">演示版仅用于作业展示；正式预约请以卫生机构规定为准。</view>
+
+    <view class="form-row">
+      <text class="form-label">姓名</text>
+      <input
+        class="form-input"
+        placeholder="请输入真实姓名"
+        value="{{name}}"
+        bindinput="onNameInput"
+      />
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">手机</text>
+      <input
+        class="form-input"
+        type="number"
+        maxlength="11"
+        placeholder="11位手机号码"
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+      />
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">日期</text>
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="form-picker">{{date || '请选择预约日期'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">类型</text>
+      <picker
+        mode="selector"
+        range="{{serviceTypes}}"
+        value="{{serviceTypeIndex}}"
+        bindchange="onServiceChange"
+      >
+        <view class="form-picker">{{serviceTypes[serviceTypeIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">分类</text>
+      <picker
+        mode="selector"
+        range="{{categories}}"
+        value="{{categoryIndex}}"
+        bindchange="onCategoryChange"
+      >
+        <view class="form-picker">{{categories[categoryIndex]}}</view>
+      </picker>
+    </view>
+
+    <button class="btn-primary" loading="{{submitting}}" bindtap="submit">
+      提交预约
+    </button>
+  </view>
+</view>

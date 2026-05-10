@@ -1,0 +1,44 @@
+@import "../appointments/appointments.wxss";
+
+.art-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-bottom: 10rpx;
+}
+
+.art-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #0f172a;
+  flex: 1;
+  min-width: 200rpx;
+}
+
+.pub-tag {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  background: #e8f5f4;
+  color: #0d7377;
+}
+
+.draft-tag {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.art-sum {
+  font-size: 26rpx;
+  display: block;
+  line-height: 1.45;
+  margin-bottom: 8rpx;
+}
+
+.art-date {
+  font-size: 24rpx;
+}

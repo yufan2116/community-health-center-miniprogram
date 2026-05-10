@@ -1,0 +1,50 @@
+<view class="container admin-page">
+  <view class="card filter-card">
+    <text class="filter-label">分类筛选</text>
+    <picker
+      mode="selector"
+      range="{{filterOptions}}"
+      value="{{filterIndex}}"
+      bindchange="onFilterChange"
+    >
+      <view class="filter-picker">{{filterOptions[filterIndex]}}</view>
+    </picker>
+  </view>
+
+  <view wx:if="{{loading}}" class="text-muted state-center">加载中…</view>
+
+  <view
+    class="card item-card"
+    wx:for="{{list}}"
+    wx:key="_id"
+  >
+    <view class="row-line">
+      <text class="k">分类</text>
+      <text class="v">{{item.category || '—'}}</text>
+    </view>
+    <view class="row-line">
+      <text class="k">服务</text>
+      <text class="v">{{item.serviceType}}</text>
+    </view>
+    <view class="row-line">
+      <text class="k">日期</text>
+      <text class="v">{{item.date}}</text>
+    </view>
+    <view class="row-line">
+      <text class="k">姓名</text>
+      <text class="v">{{item.name}}</text>
+    </view>
+    <view class="row-line">
+      <text class="k">手机</text>
+      <text class="v">{{item.phone}}</text>
+    </view>
+    <view class="row-line">
+      <text class="k">状态</text>
+      <text class="v">{{item.status}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{!loading && list.length===0}}" class="text-muted state-center">
+    暂无记录（或数据库权限不足）
+  </view>
+</view>

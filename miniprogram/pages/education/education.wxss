@@ -1,0 +1,45 @@
+.page-edu {
+  padding-top: 8rpx;
+}
+
+.edu-loading {
+  padding: 24rpx 8rpx;
+  text-align: center;
+}
+
+.page-hint {
+  margin-bottom: 20rpx;
+  padding: 0 4rpx;
+}
+
+.article-card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(13, 115, 119, 0.06);
+}
+
+.article-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 12rpx;
+  line-height: 1.4;
+}
+
+.article-summary {
+  font-size: 26rpx;
+  line-height: 1.55;
+  margin-bottom: 16rpx;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.article-date {
+  font-size: 24rpx;
+}

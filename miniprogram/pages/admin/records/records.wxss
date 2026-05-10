@@ -1,0 +1,21 @@
+@import "../appointments/appointments.wxss";
+
+.export-hint {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+
+.rec-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #0d7377;
+  margin-bottom: 12rpx;
+}
+
+.note-line {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+}

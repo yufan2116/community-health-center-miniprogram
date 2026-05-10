@@ -1,0 +1,31 @@
+<view class="container page-feedback">
+  <view class="card">
+    <view class="card-title">意见反馈</view>
+    <view class="text-muted form-tip">欢迎提出使用体验与改进建议（演示数据）。</view>
+
+    <view class="form-block">
+      <text class="block-label">反馈内容</text>
+      <textarea
+        class="block-area"
+        placeholder="请简要描述问题或建议"
+        value="{{content}}"
+        maxlength="500"
+        bindinput="onContent"
+      />
+    </view>
+
+    <view class="form-block">
+      <text class="block-label">联系方式（选填）</text>
+      <input
+        class="block-input"
+        placeholder="手机或微信号"
+        value="{{contact}}"
+        bindinput="onContact"
+      />
+    </view>
+
+    <button class="btn-primary" loading="{{submitting}}" bindtap="submit">
+      提交反馈
+    </button>
+  </view>
+</view>

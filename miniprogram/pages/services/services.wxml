@@ -1,0 +1,13 @@
+<view class="container page-services">
+  <view class="page-hint text-muted">以下为演示栏目，具体开诊时间、疫苗库存以中心现场公示为准。</view>
+
+  <view class="service-card" wx:for="{{list}}" wx:key="key">
+    <view class="service-head">
+      <text class="service-name">{{item.name}}</text>
+      <text class="tag">{{item.tag}}</text>
+    </view>
+    <text class="service-desc">{{item.desc}}</text>
+  </view>
+
+  <button class="btn-primary" bindtap="goAppointment">去在线预约</button>
+</view>

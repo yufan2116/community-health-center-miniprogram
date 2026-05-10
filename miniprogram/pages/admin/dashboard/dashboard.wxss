@@ -1,0 +1,42 @@
+@import "../login/login.wxss";
+
+.btn-admin {
+  margin-bottom: 20rpx;
+  background: linear-gradient(135deg, #0d7377 0%, #14919b 100%);
+  color: #fff;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 22rpx;
+  border: none;
+}
+
+.btn-admin::after {
+  border: none;
+}
+
+.btn-seed {
+  margin-bottom: 20rpx;
+  background: #e8f5f4;
+  color: #0d7377;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 22rpx;
+  border: 1rpx solid #b8ddd9;
+}
+
+.btn-seed::after {
+  border: none;
+}
+
+.btn-logout {
+  background: #f1f5f9;
+  color: #64748b;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 22rpx;
+  border: none;
+}
+
+.btn-logout::after {
+  border: none;
+}

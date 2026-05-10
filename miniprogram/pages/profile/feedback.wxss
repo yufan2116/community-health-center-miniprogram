@@ -1,0 +1,40 @@
+.page-feedback {
+  padding-top: 8rpx;
+}
+
+.form-tip {
+  margin-bottom: 24rpx;
+  line-height: 1.5;
+}
+
+.form-block {
+  margin-bottom: 28rpx;
+}
+
+.block-label {
+  display: block;
+  font-size: 28rpx;
+  color: #334155;
+  margin-bottom: 12rpx;
+}
+
+.block-area {
+  width: 100%;
+  min-height: 200rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  background: #f8fafb;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  border: 1rpx solid #e2e8f0;
+}
+
+.block-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+  background: #f8fafb;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  border: 1rpx solid #e2e8f0;
+}

@@ -1,0 +1,66 @@
+<view class="container admin-page">
+  <view class="card">
+    <view class="card-title">推送个性化食疗方案</view>
+    <text class="text-muted admin-tip">居民需在个人中心用同一手机号查询。可与通用菜谱名称关联（文本）。</text>
+    <view class="admin-field">
+      <text class="admin-label">居民手机</text>
+      <input
+        class="admin-input"
+        type="number"
+        maxlength="11"
+        placeholder="11位手机号"
+        value="{{phone}}"
+        bindinput="onPhone"
+      />
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">居民姓名</text>
+      <input
+        class="admin-input"
+        placeholder="选填"
+        value="{{residentName}}"
+        bindinput="onName"
+      />
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">方案标题</text>
+      <input
+        class="admin-input"
+        placeholder="如：高血压一周食疗建议"
+        value="{{title}}"
+        bindinput="onTitle"
+      />
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">方案内容</text>
+      <textarea
+        class="admin-textarea large"
+        placeholder="膳食原则、宜忌、餐次安排等（演示）"
+        value="{{advice}}"
+        bindinput="onAdvice"
+      />
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">参考菜谱</text>
+      <input
+        class="admin-input"
+        placeholder="选填：通用菜谱名称"
+        value="{{linkedRecipe}}"
+        bindinput="onLinked"
+      />
+    </view>
+    <button class="btn-primary" loading="{{adding}}" bindtap="add">保存并推送</button>
+  </view>
+
+  <view wx:if="{{loading}}" class="text-muted state-center">加载中…</view>
+
+  <view class="card item-card" wx:for="{{list}}" wx:key="_id">
+    <view class="dp-head">
+      <text class="dp-title">{{item.title}}</text>
+      <text class="btn-text-del" data-id="{{item._id}}" catchtap="remove">删除</text>
+    </view>
+    <text class="text-muted dp-line">{{item.residentName || '—'}} · {{item.phone}}</text>
+    <text class="dp-advice">{{item.advice}}</text>
+    <text class="text-muted dp-line" wx:if="{{item.linkedRecipe}}">参考：{{item.linkedRecipe}}</text>
+  </view>
+</view>

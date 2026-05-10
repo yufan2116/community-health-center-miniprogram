@@ -1,0 +1,21 @@
+<view class="container page-edu">
+  <view class="text-muted page-hint">健康科普文章仅供学习参考，不能替代医务人员诊疗意见。列表来自云库已发布文章，无数据时使用本地示例。</view>
+
+  <view wx:if="{{loading}}" class="text-muted edu-loading">加载中…</view>
+  <view wx:if="{{!loading && list.length === 0}}" class="text-muted edu-loading">暂无已发布文章</view>
+
+  <view
+    class="article-card"
+    wx:for="{{list}}"
+    wx:key="id"
+    data-id="{{item.id}}"
+    bindtap="openDetail"
+  >
+    <view class="article-title">{{item.title}}</view>
+    <view class="article-summary text-muted">{{item.summary}}</view>
+    <view class="article-meta">
+      <text class="tag">宣教</text>
+      <text class="article-date text-muted">{{item.date}}</text>
+    </view>
+  </view>
+</view>

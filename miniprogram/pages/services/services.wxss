@@ -1,0 +1,38 @@
+.page-services {
+  padding-top: 8rpx;
+}
+
+.page-hint {
+  margin-bottom: 20rpx;
+  padding: 0 4rpx;
+}
+
+.service-card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(13, 115, 119, 0.07);
+  border-left: 6rpx solid #0d7377;
+}
+
+.service-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.service-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.service-desc {
+  font-size: 26rpx;
+  color: #64748b;
+  line-height: 1.6;
+}

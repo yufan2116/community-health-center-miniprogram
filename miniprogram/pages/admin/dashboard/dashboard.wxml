@@ -1,0 +1,49 @@
+<view class="container admin-page">
+  <view class="card">
+    <view class="card-title">欢迎，{{user}}</view>
+    <text class="text-muted admin-tip">以下为作业演示功能，非真实医疗权限。</text>
+    <button
+      class="btn-admin"
+      data-url="/pages/admin/appointments/appointments"
+      bindtap="go"
+    >
+      预约记录（分类筛选）
+    </button>
+    <button
+      class="btn-admin"
+      data-url="/pages/admin/records/records"
+      bindtap="go"
+    >
+      居民健康档案（导出 CSV）
+    </button>
+    <button
+      class="btn-admin"
+      data-url="/pages/admin/articles/articles"
+      bindtap="go"
+    >
+      健康宣教文章
+    </button>
+    <button
+      class="btn-admin"
+      data-url="/pages/admin/recipes/recipes"
+      bindtap="go"
+    >
+      通用菜谱
+    </button>
+    <button
+      class="btn-admin"
+      data-url="/pages/admin/diet-plans/diet-plans"
+      bindtap="go"
+    >
+      个性化食疗方案
+    </button>
+  </view>
+
+  <view class="card">
+    <view class="card-title">数据维护</view>
+    <button class="btn-seed" loading="{{seeding}}" bindtap="seed">
+      初始化演示数据（云库）
+    </button>
+    <button class="btn-logout" bindtap="logout">退出登录</button>
+  </view>
+</view>

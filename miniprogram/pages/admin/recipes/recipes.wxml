@@ -1,0 +1,51 @@
+<view class="container admin-page">
+  <view class="card">
+    <view class="card-title">新增通用菜谱</view>
+    <view class="admin-field">
+      <text class="admin-label">名称</text>
+      <input
+        class="admin-input"
+        placeholder="菜谱名称"
+        value="{{title}}"
+        bindinput="onTitle"
+      />
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">标签</text>
+      <input
+        class="admin-input"
+        placeholder="如：清淡、低脂"
+        value="{{tags}}"
+        bindinput="onTags"
+      />
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">用料</text>
+      <textarea
+        class="admin-textarea"
+        placeholder="食材与用量"
+        value="{{ingredients}}"
+        bindinput="onIng"
+      />
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">步骤</text>
+      <textarea
+        class="admin-textarea large"
+        placeholder="制作步骤"
+        value="{{steps}}"
+        bindinput="onSteps"
+      />
+    </view>
+    <button class="btn-primary" loading="{{adding}}" bindtap="add">保存菜谱</button>
+  </view>
+
+  <view wx:if="{{loading}}" class="text-muted state-center">加载中…</view>
+
+  <view class="card item-card" wx:for="{{list}}" wx:key="_id">
+    <view class="rec-title">{{item.title}}</view>
+    <text class="text-muted rec-tags" wx:if="{{item.tags}}">标签：{{item.tags}}</text>
+    <text class="rec-block">用料：{{item.ingredients}}</text>
+    <text class="rec-block">步骤：{{item.steps}}</text>
+  </view>
+</view>

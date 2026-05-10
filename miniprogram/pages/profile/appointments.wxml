@@ -1,0 +1,32 @@
+<view class="container page-appt-list">
+  <view wx:if="{{loading}}" class="state text-muted">加载中…</view>
+
+  <view wx:if="{{!loading && list.length === 0}}" class="state text-muted">{{emptyText}}</view>
+
+  <view class="appt-card" wx:for="{{list}}" wx:key="_id">
+    <view class="appt-row">
+      <text class="appt-label">预约分类</text>
+      <text class="appt-value">{{item.category || '—'}}</text>
+    </view>
+    <view class="appt-row">
+      <text class="appt-label">服务类型</text>
+      <text class="appt-value">{{item.serviceType}}</text>
+    </view>
+    <view class="appt-row">
+      <text class="appt-label">预约日期</text>
+      <text class="appt-value">{{item.date}}</text>
+    </view>
+    <view class="appt-row">
+      <text class="appt-label">姓名</text>
+      <text class="appt-value">{{item.name}}</text>
+    </view>
+    <view class="appt-row">
+      <text class="appt-label">手机</text>
+      <text class="appt-value">{{item.phone}}</text>
+    </view>
+    <view class="appt-foot">
+      <text class="tag">{{item.status || '待确认'}}</text>
+      <text class="text-muted appt-id" wx:if="{{item._id}}">ID: {{item._id}}</text>
+    </view>
+  </view>
+</view>
