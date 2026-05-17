@@ -20,6 +20,6 @@
   },
   "condition": {},
   "description": "项目私有配置。调试基础库建议与 libVersion 一致（当前 3.15.1）；避免仅使用灰度版以免模拟器异常。",
-  "projectname": "A26051003_M",
+  "projectname": "community-health-center-miniprogram",
   "libVersion": "3.15.1"
 }

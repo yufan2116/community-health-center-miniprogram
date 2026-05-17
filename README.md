@@ -21,7 +21,7 @@
 ## 二、环境与运行
 
 1. 安装 [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)（稳定版即可）。
-2. 打开工具，选择 **导入项目**，项目目录选本仓库根目录 `A26051003_M`（包含 `project.config.json` 与 `miniprogram/` 的那一层）。
+2. 打开工具，选择 **导入项目**，项目目录选本仓库根目录（包含 `project.config.json` 与 `miniprogram/` 的那一层）。
 3. **AppID**：可使用测试号，或填入你已注册的小程序 AppID；演示版不强制开通云开发。
 4. 点击 **编译**。底部 Tab 应出现：首页、服务、预约、宣教、我的。
 
