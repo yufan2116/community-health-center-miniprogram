@@ -28,12 +28,13 @@ Page({
       .then(function (res) {
         var rows = (res.data || []).slice();
         rows.sort(function (a, b) {
-          return (b.createTime || 0) - (a.createTime || 0);
+          return (b.createdAt || b.createTime || 0) - (a.createdAt || a.createTime || 0);
         });
         that.setData({ list: rows });
       })
       .catch(function () {
         that.setData({ list: [] });
+        wx.showToast({ title: "数据加载失败", icon: "none" });
       })
       .then(function () {
         that.setData({ loading: false });
@@ -62,13 +63,20 @@ Page({
     }
     this.setData({ adding: true });
     adminCloud
-      .addRecipe({
+      .saveRecipe({
         title: title,
         tags: (this.data.tags || "").trim(),
         ingredients: (this.data.ingredients || "").trim(),
         steps: (this.data.steps || "").trim(),
       })
-      .then(function () {
+      .then(function (res) {
+        if (res && res.ok === false) {
+          wx.showToast({
+            title: res.message || "本地存储失败，请清理缓存后重试",
+            icon: "none",
+          });
+          return;
+        }
         wx.showToast({ title: "已添加", icon: "success" });
         that.setData({
           title: "",

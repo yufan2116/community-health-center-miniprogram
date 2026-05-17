@@ -49,13 +49,26 @@
 
 .notice-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   padding: 20rpx 0;
   border-bottom: 1rpx solid #eef2f2;
 }
 
+.notice-item-hover {
+  opacity: 0.88;
+}
+
 .notice-item:last-child {
   border-bottom: none;
+}
+
+.notice-row-arrow {
+  width: 28rpx;
+  height: 28rpx;
+  opacity: 0.35;
+  flex-shrink: 0;
+  margin-left: 12rpx;
+  transform: rotate(-90deg);
 }
 
 .notice-dot {
@@ -63,9 +76,10 @@
   height: 12rpx;
   border-radius: 50%;
   background: #14919b;
-  margin-top: 14rpx;
   margin-right: 20rpx;
   flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 14rpx;
 }
 
 .notice-body {
@@ -158,4 +172,9 @@
   opacity: 0.45;
   flex-shrink: 0;
   transform: rotate(-90deg);
+}
+
+.notice-empty-hint {
+  padding: 24rpx 8rpx 8rpx;
+  font-size: 26rpx;
 }

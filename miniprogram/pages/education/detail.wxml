@@ -1,8 +1,35 @@
-<view class="container page-detail" wx:if="{{article}}">
+<view class="container page-detail" wx:if="{{pageState === 'ok' && article}}">
+  <image
+    wx:if="{{article.coverImage}}"
+    class="detail-cover"
+    src="{{article.coverImage}}"
+    mode="widthFix"
+  />
   <view class="detail-header">
     <view class="detail-title">{{article.title}}</view>
     <view class="detail-meta text-muted">{{article.date}}</view>
   </view>
-  <view class="detail-body">{{article.content}}</view>
+  <view class="detail-body-wrap">
+    <block wx:for="{{bodyBlocks}}" wx:for-item="seg" wx:for-index="bi" wx:key="bi">
+      <view wx:if="{{seg.type == 'text'}}" class="detail-body-fragment">{{seg.text}}</view>
+      <image
+        wx:else
+        class="detail-inline-img"
+        src="{{seg.src}}"
+        mode="widthFix"
+        show-menu-by-longpress="{{true}}"
+      />
+    </block>
+  </view>
   <view class="detail-footer text-muted">— 演示内容 · 非医疗建议 —</view>
+</view>
+
+<view wx:if="{{pageState === 'loading'}}" class="container page-detail detail-empty text-muted">
+  加载中…
+</view>
+<view wx:if="{{pageState === 'missing'}}" class="container page-detail detail-empty text-muted">
+  文章不存在或已删除，请返回列表重试。
+</view>
+<view wx:if="{{pageState === 'error'}}" class="container page-detail detail-empty text-muted">
+  内容加载失败，请检查网络或稍后重试。
 </view>

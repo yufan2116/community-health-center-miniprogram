@@ -1,31 +1,46 @@
 /**
- * 演示版管理员登录态（仅存本机，非生产方案）
+ * 演示版管理员登录态（本机 Storage，本地演示版不依赖云开发）
+ * 登录标记键：isAdmin（由 setLoggedIn 写入）
  */
-var ADMIN_KEY = "nh_admin_demo_session_v1";
+var cloudStore = require("./cloudStore.js");
+var IS_ADMIN = "isAdmin";
+var LEGACY_KEY = "nh_admin_demo_session_v1";
 
-function getSession() {
+function isLoggedIn() {
   try {
-    return wx.getStorageSync(ADMIN_KEY) || null;
+    return wx.getStorageSync(IS_ADMIN) === true;
   } catch (e) {
-    return null;
+    return false;
   }
 }
 
-function isLoggedIn() {
-  var s = getSession();
-  return !!(s && s.username);
+/**
+ * @returns {{ ok: true } | { ok: false }} 写入失败时 ok 为 false，页面应 Toast
+ */
+function setLoggedIn(value) {
+  try {
+    if (value) {
+      var wr = cloudStore.safeSetStorage(IS_ADMIN, true);
+      if (!wr.ok) return { ok: false };
+      return { ok: true };
+    }
+    wx.removeStorageSync(IS_ADMIN);
+    return { ok: true };
+  } catch (e) {
+    return { ok: false };
+  }
 }
 
-function setSession(username) {
-  wx.setStorageSync(ADMIN_KEY, {
-    username: username,
-    loginAt: Date.now(),
-  });
+/** 供后台页展示用；固定账号演示 */
+function getSession() {
+  if (!isLoggedIn()) return null;
+  return { username: "admin", loginAt: Date.now() };
 }
 
 function clearSession() {
   try {
-    wx.removeStorageSync(ADMIN_KEY);
+    wx.removeStorageSync(IS_ADMIN);
+    wx.removeStorageSync(LEGACY_KEY);
   } catch (e) {}
 }
 
@@ -38,10 +53,10 @@ function requireLogin() {
 }
 
 module.exports = {
-  ADMIN_KEY: ADMIN_KEY,
-  getSession: getSession,
+  IS_ADMIN_KEY: IS_ADMIN,
   isLoggedIn: isLoggedIn,
-  setSession: setSession,
+  setLoggedIn: setLoggedIn,
+  getSession: getSession,
   clearSession: clearSession,
   requireLogin: requireLogin,
 };

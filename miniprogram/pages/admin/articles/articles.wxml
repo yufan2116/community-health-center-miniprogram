@@ -1,24 +1,58 @@
 <view class="container admin-page">
   <view class="card">
     <button class="btn-primary" bindtap="add">新增文章</button>
+    <button class="btn-admin" bindtap="openTheme">宣教页背景图</button>
+    <text class="text-muted art-hint">已发布文章在居民端「宣教」展示；草稿仅后台可见。点击卡片或「编辑」可修改标题、正文与配图；「删除」不可恢复。</text>
   </view>
 
   <view wx:if="{{loading}}" class="text-muted state-center">加载中…</view>
 
-  <view
-    class="card item-card"
-    wx:for="{{list}}"
-    wx:key="_id"
-    data-id="{{item._id}}"
-    bindtap="edit"
-  >
-    <view class="art-head">
-      <text class="art-title">{{item.title}}</text>
-      <text class="pub-tag" wx:if="{{item.published}}">已发布</text>
-      <text class="draft-tag" wx:else>草稿</text>
+  <view class="card item-card" wx:for="{{list}}" wx:key="_id">
+    <view class="art-body" data-id="{{item._id || item.id}}" bindtap="edit">
+      <view class="art-row">
+        <image
+          wx:if="{{item.coverImage}}"
+          class="art-thumb"
+          src="{{item.coverImage}}"
+          mode="aspectFill"
+        />
+        <view class="art-main">
+          <view class="art-head">
+            <text class="art-title">{{item.title}}</text>
+            <text class="pub-tag" wx:if="{{item.published}}">已发布</text>
+            <text class="draft-tag" wx:else>草稿</text>
+          </view>
+          <text class="text-muted art-sum">{{item.summary}}</text>
+          <text class="text-muted art-date">{{item.date}}</text>
+        </view>
+      </view>
     </view>
-    <text class="text-muted art-sum">{{item.summary}}</text>
-    <text class="text-muted art-date">{{item.date}}</text>
+    <view class="art-actions">
+      <button
+        class="btn-mini"
+        size="mini"
+        data-id="{{item._id || item.id}}"
+        catchtap="edit"
+      >
+        编辑
+      </button>
+      <button
+        class="btn-mini"
+        size="mini"
+        data-id="{{item._id || item.id}}"
+        catchtap="togglePublish"
+      >
+        {{item.published ? '撤下' : '发布'}}
+      </button>
+      <button
+        class="btn-mini btn-mini-danger"
+        size="mini"
+        data-id="{{item._id || item.id}}"
+        catchtap="removeArticle"
+      >
+        删除
+      </button>
+    </view>
   </view>
 
   <view wx:if="{{!loading && list.length===0}}" class="text-muted state-center">

@@ -48,4 +48,8 @@
     <text class="rec-block">用料：{{item.ingredients}}</text>
     <text class="rec-block">步骤：{{item.steps}}</text>
   </view>
+
+  <view wx:if="{{!loading && list.length===0}}" class="text-muted state-center">
+    暂无菜谱，可在上方表单新增或执行「初始化演示数据」
+  </view>
 </view>

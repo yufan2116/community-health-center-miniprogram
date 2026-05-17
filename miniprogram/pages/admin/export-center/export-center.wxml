@@ -1,0 +1,159 @@
+<view class="container admin-page">
+  <view class="tab-bar tab-bar-3">
+    <view
+      class="tab-item {{tab==='appt'?'on':''}}"
+      data-tab="appt"
+      bindtap="onTab"
+    >
+      预约
+    </view>
+    <view
+      class="tab-item {{tab==='rec'?'on':''}}"
+      data-tab="rec"
+      bindtap="onTab"
+    >
+      公卫档案
+    </view>
+    <view
+      class="tab-item {{tab==='dossier'?'on':''}}"
+      data-tab="dossier"
+      bindtap="onTab"
+    >
+      自填档案
+    </view>
+  </view>
+
+  <view class="card tool-card" wx:if="{{tab==='appt'}}">
+    <view class="filter-card filter-card--tight">
+      <text class="filter-label">分类</text>
+      <picker
+        mode="selector"
+        range="{{filterOptions}}"
+        value="{{filterIndex}}"
+        bindchange="onFilterChange"
+      >
+        <view class="filter-picker">{{filterOptions[filterIndex]}}</view>
+      </picker>
+    </view>
+    <view class="btn-row">
+      <button class="btn-primary btn-half" loading="{{exporting}}" bindtap="exportAppointments">
+        导出 Excel（CSV）
+      </button>
+      <button class="btn-admin btn-half" bindtap="reloadAppt">刷新</button>
+    </view>
+    <text class="export-tip">生成带 UTF-8 BOM 的 CSV，可用 Excel 打开；也可复制到表格。</text>
+  </view>
+
+  <view class="card tool-card" wx:if="{{tab==='rec'}}">
+    <view class="btn-row">
+      <button class="btn-primary btn-half" loading="{{exporting}}" bindtap="exportRecords">
+        导出 Excel（CSV）
+      </button>
+      <button class="btn-admin btn-half" bindtap="reloadRec">刷新</button>
+    </view>
+    <text class="export-tip">公卫演示档案（local_health_records），非居民自填表。</text>
+  </view>
+
+  <view class="card tool-card" wx:if="{{tab==='dossier'}}">
+    <view class="btn-row">
+      <button class="btn-primary btn-half" loading="{{exporting}}" bindtap="exportDossier">
+        导出 Excel（CSV）
+      </button>
+      <button class="btn-admin btn-half" bindtap="reloadDossier">刷新</button>
+    </view>
+    <text class="export-tip">居民本人填写的健康档案（local_resident_personal_archives）。</text>
+  </view>
+
+  <view wx:if="{{tab==='appt'}}">
+    <view wx:if="{{apptLoading}}" class="text-muted state-center">加载中…</view>
+    <view
+      class="card item-card"
+      wx:for="{{apptList}}"
+      wx:key="_id"
+    >
+      <view class="row-line">
+        <text class="k">分类</text>
+        <text class="v">{{item.category || '—'}}</text>
+      </view>
+      <view class="row-line">
+        <text class="k">服务</text>
+        <text class="v">{{item.serviceType}}</text>
+      </view>
+      <view class="row-line" wx:if="{{item.departmentName || item.doctorName}}">
+        <text class="k">科室/医生</text>
+        <text class="v">{{item.departmentName || '—'}} / {{item.doctorName || '—'}}</text>
+      </view>
+      <view class="row-line">
+        <text class="k">日期</text>
+        <text class="v">{{item.date}}</text>
+      </view>
+      <view class="row-line">
+        <text class="k">姓名</text>
+        <text class="v">{{item.name}}</text>
+      </view>
+      <view class="row-line">
+        <text class="k">手机</text>
+        <text class="v">{{item.phone}}</text>
+      </view>
+      <view class="row-line">
+        <text class="k">状态</text>
+        <text class="v">{{item.status}}</text>
+      </view>
+    </view>
+    <view wx:if="{{!apptLoading && apptList.length===0}}" class="text-muted state-center">
+      暂无预约记录，可在居民端提交或执行「初始化演示数据」
+    </view>
+  </view>
+
+  <view wx:if="{{tab==='rec'}}">
+    <view wx:if="{{recLoading}}" class="text-muted state-center">加载中…</view>
+    <view class="card item-card" wx:for="{{recList}}" wx:key="_id">
+      <view class="rec-name">{{item.name}} · {{item.phone}}</view>
+      <view class="row-line">
+        <text class="k">性别/年龄</text>
+        <text class="v">{{item.gender}} / {{item.age}}</text>
+      </view>
+      <view class="row-line">
+        <text class="k">血压</text>
+        <text class="v">{{item.bloodPressure}}</text>
+      </view>
+      <view class="row-line">
+        <text class="k">慢病</text>
+        <text class="v">{{item.chronic}}</text>
+      </view>
+      <view class="row-line">
+        <text class="k">最近就诊</text>
+        <text class="v">{{item.lastVisit}}</text>
+      </view>
+      <view class="note-line text-muted">{{item.note}}</view>
+    </view>
+    <view wx:if="{{!recLoading && recList.length===0}}" class="text-muted state-center">
+      暂无公卫演示档案，可在控制台「初始化演示数据」
+    </view>
+  </view>
+
+  <view wx:if="{{tab==='dossier'}}">
+    <view wx:if="{{dossierLoading}}" class="text-muted state-center">加载中…</view>
+    <view
+      class="card item-card"
+      wx:for="{{dossierList}}"
+      wx:key="phone"
+      data-phone="{{item.phone}}"
+      bindtap="openDossierDetail"
+    >
+      <view class="rec-name">{{item.residentName || '（未填姓名）'}} · {{item.phone}}</view>
+      <view class="row-line">
+        <text class="k">性别</text>
+        <text class="v">{{item.gender || '—'}}</text>
+      </view>
+      <view class="row-line">
+        <text class="k">常住地址</text>
+        <text class="v">{{item.address || '—'}}</text>
+      </view>
+      <view class="note-line text-muted">点击查看完整只读详情</view>
+    </view>
+    <view wx:if="{{!dossierLoading && dossierList.length===0}}" class="text-muted state-center">
+      暂无自填档案，居民可在「服务-居民健康档案管理」或「我的-我的健康档案」填写
+    </view>
+  </view>
+</view>

@@ -4,6 +4,13 @@
     <text class="text-muted admin-tip">以下为作业演示功能，非真实医疗权限。</text>
     <button
       class="btn-admin"
+      data-url="/pages/admin/export-center/export-center"
+      bindtap="go"
+    >
+      数据导出（预约+公卫档案+自填档案）
+    </button>
+    <button
+      class="btn-admin"
       data-url="/pages/admin/appointments/appointments"
       bindtap="go"
     >
@@ -14,14 +21,21 @@
       data-url="/pages/admin/records/records"
       bindtap="go"
     >
-      居民健康档案（导出 CSV）
+      公卫演示档案（中心侧查看）
+    </button>
+    <button
+      class="btn-admin"
+      data-url="/pages/admin/resident-archives/resident-archives"
+      bindtap="go"
+    >
+      居民自填档案（只读/导出）
     </button>
     <button
       class="btn-admin"
       data-url="/pages/admin/articles/articles"
       bindtap="go"
     >
-      健康宣教文章
+      宣教文章管理
     </button>
     <button
       class="btn-admin"
@@ -29,6 +43,13 @@
       bindtap="go"
     >
       通用菜谱
+    </button>
+    <button
+      class="btn-admin"
+      data-url="/pages/admin/clinic-meta/clinic-meta"
+      bindtap="go"
+    >
+      科室与医生（挂号数据源）
     </button>
     <button
       class="btn-admin"
@@ -42,8 +63,25 @@
   <view class="card">
     <view class="card-title">数据维护</view>
     <button class="btn-seed" loading="{{seeding}}" bindtap="seed">
-      初始化演示数据（云库）
+      初始化演示数据（仅填空项，不覆盖已有）
     </button>
+    <button
+      class="btn-clear-local"
+      loading="{{clearing}}"
+      bindtap="clearLocal"
+    >
+      清空本地数据
+    </button>
+    <button
+      class="btn-reseed"
+      loading="{{reseeding}}"
+      bindtap="reseedDemo"
+    >
+      重新初始化演示数据
+    </button>
+    <text class="text-muted admin-tip data-maintain-hint">
+      「清空」仅删除业务演示键与居民绑定手机，保留管理员登录；「重新初始化」会先清空再写入全套演示数据。
+    </text>
     <button class="btn-logout" bindtap="logout">退出登录</button>
   </view>
 </view>

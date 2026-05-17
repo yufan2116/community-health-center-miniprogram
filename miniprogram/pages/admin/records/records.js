@@ -1,40 +1,25 @@
 var adminAuth = require("../../../utils/adminAuth.js");
 var adminCloud = require("../../../utils/adminCloud.js");
+var adminExcelExport = require("../../../utils/adminExcelExport.js");
 
-function escapeCsv(s) {
-  s = String(s == null ? "" : s);
-  if (/[",\n]/.test(s)) {
-    return '"' + s.replace(/"/g, '""') + '"';
-  }
-  return s;
-}
-
-function toCsv(rows) {
-  var header = "姓名,手机,性别,年龄,血压,慢病,最近就诊,备注";
-  var lines = [header];
-  (rows || []).forEach(function (r) {
-    lines.push(
-      [
-        r.name,
-        r.phone,
-        r.gender,
-        r.age,
-        r.bloodPressure,
-        r.chronic,
-        r.lastVisit,
-        r.note,
-      ]
-        .map(escapeCsv)
-        .join(",")
-    );
-  });
-  return lines.join("\n");
+function todayTag() {
+  var t = new Date();
+  var m = t.getMonth() + 1;
+  var d = t.getDate();
+  return (
+    t.getFullYear() +
+    (m < 10 ? "0" : "") +
+    m +
+    (d < 10 ? "0" : "") +
+    d
+  );
 }
 
 Page({
   data: {
     list: [],
     loading: true,
+    exporting: false,
   },
 
   onShow: function () {
@@ -51,10 +36,29 @@ Page({
       })
       .catch(function () {
         that.setData({ list: [] });
-        wx.showToast({ title: "加载失败", icon: "none" });
+        wx.showToast({ title: "数据加载失败", icon: "none" });
       })
       .then(function () {
         that.setData({ loading: false });
+      });
+  },
+
+  exportExcel: function () {
+    var rows = this.data.list || [];
+    if (!rows.length) {
+      wx.showToast({ title: "无数据可导出", icon: "none" });
+      return;
+    }
+    var that = this;
+    this.setData({ exporting: true });
+    adminExcelExport
+      .writeAndDeliverCsv("公卫演示档案_" + todayTag(), adminExcelExport.healthRecordsToCsv(rows))
+      .catch(function (err) {
+        console.warn("export records", err);
+        wx.showToast({ title: "导出失败", icon: "none" });
+      })
+      .then(function () {
+        that.setData({ exporting: false });
       });
   },
 
@@ -64,13 +68,13 @@ Page({
       wx.showToast({ title: "无数据可导出", icon: "none" });
       return;
     }
-    var csv = toCsv(rows);
+    var csv = "\uFEFF" + adminExcelExport.healthRecordsToCsv(rows);
     wx.setClipboardData({
       data: csv,
       success: function () {
         wx.showModal({
           title: "已复制",
-          content: "CSV 已复制到剪贴板，可粘贴到 Excel 或记事本（演示）。",
+          content: "已复制为 UTF-8 CSV，可直接粘贴到 Excel。",
           showCancel: false,
         });
       },

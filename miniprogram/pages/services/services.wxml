@@ -1,10 +1,25 @@
 <view class="container page-services">
-  <view class="page-hint text-muted">以下为演示栏目，具体开诊时间、疫苗库存以中心现场公示为准。</view>
+  <view class="svc-hero card">
+    <view class="svc-hero-title">中心服务</view>
+    <text class="svc-hero-sub text-muted">基本医疗与公共卫生服务一览。开诊时间、疫苗库存、号源以现场公示与工作人员说明为准。</text>
+  </view>
 
-  <view class="service-card" wx:for="{{list}}" wx:key="key">
+  <view class="page-hint text-muted">下列为演示栏目，含预防接种、妇幼保健、慢病管理、体检、家医签约、中医药与便民检测等。点击卡片查看详情，底部可跳转预约。</view>
+
+  <view
+    class="service-card"
+    wx:for="{{list}}"
+    wx:key="key"
+    hover-class="service-card-hover"
+    data-key="{{item.key}}"
+    bindtap="openService"
+  >
     <view class="service-head">
       <text class="service-name">{{item.name}}</text>
-      <text class="tag">{{item.tag}}</text>
+      <view class="service-head-right">
+        <text class="tag">{{item.tag}}</text>
+        <image class="service-card-arrow" src="/images/arrow.svg" mode="aspectFit" />
+      </view>
     </view>
     <text class="service-desc">{{item.desc}}</text>
   </view>

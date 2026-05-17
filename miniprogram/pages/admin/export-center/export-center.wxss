@@ -1,0 +1,64 @@
+@import "../appointments/appointments.wxss";
+
+.tab-bar {
+  display: flex;
+  margin-bottom: 16rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  overflow: hidden;
+  border: 1rpx solid #e2e8f0;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 22rpx 0;
+  font-size: 28rpx;
+  color: #64748b;
+  background: #fff;
+}
+
+.tab-bar-3 .tab-item {
+  padding: 18rpx 8rpx;
+  font-size: 26rpx;
+}
+
+.tool-card .btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.tool-card .btn-half {
+  flex: 1;
+  min-width: 260rpx;
+  font-size: 26rpx;
+}
+
+.filter-card--tight {
+  margin: -8rpx 0 16rpx 0;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.export-tip {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.rec-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #0d7377;
+  margin-bottom: 12rpx;
+}
+
+.note-line {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+}

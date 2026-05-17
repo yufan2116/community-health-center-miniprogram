@@ -3,7 +3,7 @@
 
   <view wx:if="{{!loading && list.length === 0}}" class="state text-muted">{{emptyText}}</view>
 
-  <view class="appt-card" wx:for="{{list}}" wx:key="_id">
+  <view class="appt-card" wx:for="{{list}}" wx:key="id">
     <view class="appt-row">
       <text class="appt-label">预约分类</text>
       <text class="appt-value">{{item.category || '—'}}</text>
@@ -11,6 +11,10 @@
     <view class="appt-row">
       <text class="appt-label">服务类型</text>
       <text class="appt-value">{{item.serviceType}}</text>
+    </view>
+    <view class="appt-row" wx:if="{{item.departmentName || item.doctorName}}">
+      <text class="appt-label">科室 / 医生</text>
+      <text class="appt-value">{{item.departmentName || '—'}} / {{item.doctorName || '—'}}</text>
     </view>
     <view class="appt-row">
       <text class="appt-label">预约日期</text>

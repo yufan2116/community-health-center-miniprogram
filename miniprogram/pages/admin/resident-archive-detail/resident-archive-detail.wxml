@@ -1,0 +1,13 @@
+<view class="container admin-page" wx:if="{{loaded && !error}}">
+  <text class="ro-note">只读展示 · 后台不可编辑居民自填内容</text>
+  <view wx:for="{{sections}}" wx:key="title" class="card item-card">
+    <view class="card-title">{{item.title}}</view>
+    <view class="row-line" wx:for="{{item.items}}" wx:for-item="cell" wx:key="label">
+      <text class="k">{{cell.label}}</text>
+      <text class="v">{{cell.value || '—'}}</text>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{!loaded && !error}}" class="text-muted state-center">加载中…</view>
+<view wx:if="{{error}}" class="text-muted state-center">{{error}}</view>

@@ -1,0 +1,205 @@
+.pa-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+  background: #f0f4f3;
+}
+
+.pa-scroll {
+  flex: 1;
+  height: 0;
+  padding: 16rpx 28rpx 24rpx;
+  box-sizing: border-box;
+  /* 避免子项 input 在 flex 布局下被压成一条线 */
+  min-height: 0;
+}
+
+.pa-notice {
+  background: linear-gradient(145deg, #ecfdf5 0%, #f0fdfa 100%);
+  border: 1rpx solid #99f6e4;
+  border-radius: 16rpx;
+  padding: 22rpx 24rpx 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(13, 115, 119, 0.06);
+}
+
+.pa-notice-hd {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #0d7377;
+  margin-bottom: 12rpx;
+  letter-spacing: 0.5rpx;
+}
+
+.pa-notice-txt {
+  display: block;
+  font-size: 24rpx;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+
+.pa-identity {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12rpx 16rpx;
+  padding-top: 14rpx;
+  border-top: 1rpx dashed rgba(13, 115, 119, 0.25);
+}
+
+.pa-identity-label {
+  font-size: 24rpx;
+  color: #64748b;
+}
+
+.pa-footer {
+  flex-shrink: 0;
+  padding: 16rpx 28rpx calc(16rpx + env(safe-area-inset-bottom));
+  background: #ffffff;
+  border-top: 1rpx solid #e2e8f0;
+}
+
+.pa-save-btn {
+  width: 100%;
+  margin-top: 0;
+  border-radius: 999rpx;
+  box-shadow: 0 8rpx 24rpx rgba(13, 115, 119, 0.22);
+}
+
+.pa-tip {
+  font-size: 24rpx;
+  color: #64748b;
+  line-height: 1.55;
+  margin-bottom: 16rpx;
+  padding: 0 4rpx;
+}
+
+.pa-card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(13, 115, 119, 0.06);
+}
+
+.pa-sec-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #0d7377;
+  margin-bottom: 20rpx;
+  padding-bottom: 12rpx;
+  border-bottom: 2rpx solid #e8f2f1;
+}
+
+.pa-req-tag {
+  font-size: 22rpx;
+  font-weight: 500;
+  color: #b45309;
+  margin-left: 8rpx;
+  vertical-align: middle;
+}
+
+.pa-star {
+  color: #dc2626;
+  margin-left: 4rpx;
+  font-size: 26rpx;
+}
+
+.pa-sec-sub {
+  display: block;
+  font-size: 24rpx;
+  line-height: 1.5;
+  margin-top: -12rpx;
+  margin-bottom: 16rpx;
+}
+
+.pa-row {
+  margin-bottom: 24rpx;
+  flex-shrink: 0;
+}
+
+.pa-row:last-child {
+  margin-bottom: 0;
+}
+
+.pa-label {
+  display: block;
+  font-size: 26rpx;
+  color: #334155;
+  margin-bottom: 10rpx;
+  font-weight: 500;
+}
+
+.pa-label-hint {
+  display: block;
+  font-size: 22rpx;
+  color: #94a3b8;
+  margin-top: -4rpx;
+  margin-bottom: 10rpx;
+  line-height: 1.4;
+}
+
+.pa-input {
+  display: block;
+  width: 100%;
+  min-height: 88rpx;
+  line-height: 1.5;
+  font-size: 28rpx;
+  padding: 22rpx 24rpx;
+  background: #f8fafc;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #e2e8f0;
+}
+
+.pa-input-picker {
+  display: flex;
+  align-items: center;
+  min-height: 88rpx;
+  line-height: 1.5;
+  padding: 22rpx 24rpx;
+  box-sizing: border-box;
+}
+
+.pa-input-picker.is-placeholder {
+  color: #94a3b8;
+}
+
+.pa-textarea {
+  display: block;
+  width: 100%;
+  min-height: 180rpx;
+  line-height: 1.55;
+  font-size: 28rpx;
+  padding: 22rpx 24rpx;
+  background: #f8fafc;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  border: 1rpx solid #e2e8f0;
+}
+
+/* 常住地址：多行，避免与单行 input 同高被裁切 */
+.pa-textarea-address {
+  min-height: 220rpx;
+}
+
+.pa-phone {
+  font-size: 28rpx;
+  color: #0f172a;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1rpx;
+}
+
+.pa-block {
+  text-align: center;
+  padding: 48rpx 24rpx;
+}
+
+.pa-block-title {
+  font-size: 30rpx;
+  color: #334155;
+  margin-bottom: 16rpx;
+}

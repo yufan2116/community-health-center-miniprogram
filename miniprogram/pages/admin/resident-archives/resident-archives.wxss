@@ -1,0 +1,26 @@
+@import "../appointments/appointments.wxss";
+
+.ra-sub {
+  font-size: 24rpx;
+  color: #64748b;
+  margin-bottom: 20rpx;
+  line-height: 1.5;
+}
+
+.ra-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 8rpx;
+}
+
+.ra-phone {
+  font-size: 26rpx;
+  color: #0d7377;
+}
+
+.ra-meta {
+  font-size: 24rpx;
+  color: #94a3b8;
+  margin-top: 8rpx;
+}

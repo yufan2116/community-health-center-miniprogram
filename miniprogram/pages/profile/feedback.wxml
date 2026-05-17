@@ -4,7 +4,7 @@
     <view class="text-muted form-tip">欢迎提出使用体验与改进建议（演示数据）。</view>
 
     <view class="form-block">
-      <text class="block-label">反馈内容</text>
+      <text class="block-label">反馈内容<text class="fb-req">*</text></text>
       <textarea
         class="block-area"
         placeholder="请简要描述问题或建议"
@@ -15,10 +15,10 @@
     </view>
 
     <view class="form-block">
-      <text class="block-label">联系方式（选填）</text>
+      <text class="block-label">联系方式<text class="fb-req">*</text></text>
       <input
         class="block-input"
-        placeholder="手机或微信号"
+        placeholder="手机号（11位）或微信号（必填）"
         value="{{contact}}"
         bindinput="onContact"
       />

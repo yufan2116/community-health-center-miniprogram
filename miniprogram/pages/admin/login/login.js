@@ -1,5 +1,8 @@
 var adminAuth = require("../../../utils/adminAuth.js");
-var adminCloud = require("../../../utils/adminCloud.js");
+var cloudStore = require("../../../utils/cloudStore.js");
+
+var FIXED_USER = "admin";
+var FIXED_PASS = "admin123";
 
 Page({
   data: {
@@ -29,32 +32,29 @@ Page({
       wx.showToast({ title: "请输入账号和密码", icon: "none" });
       return;
     }
+
+    if (u !== FIXED_USER || p !== FIXED_PASS) {
+      wx.showToast({ title: "账号或密码错误", icon: "none" });
+      return;
+    }
+
     var that = this;
     this.setData({ loading: true });
-    adminCloud
-      .verifyAdmin(u, p)
-      .then(function (res) {
-        if (res.data && res.data.length) {
-          adminAuth.setSession(u);
-          wx.showToast({ title: "登录成功", icon: "success" });
-          setTimeout(function () {
-            wx.redirectTo({ url: "/pages/admin/dashboard/dashboard" });
-          }, 400);
-        } else {
-          wx.showToast({ title: "账号或密码错误", icon: "none" });
-        }
-      })
-      .catch(function (err) {
-        wx.showModal({
-          title: "登录失败",
-          content:
-            (err && err.message) ||
-            "请确认已开通云开发、已创建集合 admins，并写入演示账号（可用后台「初始化演示数据」）。",
-          showCancel: false,
-        });
-      })
-      .then(function () {
-        that.setData({ loading: false });
+
+    var wr = adminAuth.setLoggedIn(true);
+    if (!wr || wr.ok === false) {
+      wx.showToast({
+        title: cloudStore.LOCAL_STORAGE_FAIL_MSG,
+        icon: "none",
       });
+      that.setData({ loading: false });
+      return;
+    }
+    wx.showToast({ title: "登录成功", icon: "success" });
+    setTimeout(function () {
+      that.setData({ loading: false });
+      wx.redirectTo({ url: "/pages/admin/dashboard/dashboard" });
+    }, 350);
+
   },
 });

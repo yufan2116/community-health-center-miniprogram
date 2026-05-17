@@ -1,0 +1,52 @@
+@import "../article-edit/article-edit.wxss";
+
+.cm-hint {
+  font-size: 24rpx;
+  color: #64748b;
+  margin-bottom: 20rpx;
+  line-height: 1.5;
+}
+
+.cm-list-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 16rpx 0 12rpx;
+}
+
+.cm-row-actions {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 12rpx;
+}
+
+.cm-btn-sm {
+  font-size: 24rpx;
+  padding: 8rpx 20rpx;
+  line-height: 1.4;
+  background: #f1f5f9;
+  color: #334155;
+  border-radius: 8rpx;
+}
+
+.cm-btn-sm.danger {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.cm-doc-line {
+  font-size: 26rpx;
+  color: #334155;
+  margin-top: 8rpx;
+}
+
+.cm-dept-tag {
+  color: #0d7377;
+  font-size: 24rpx;
+}
+
+.cm-empty {
+  padding: 20rpx 8rpx 8rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+}

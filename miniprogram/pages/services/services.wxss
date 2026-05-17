@@ -2,6 +2,23 @@
   padding-top: 8rpx;
 }
 
+.svc-hero {
+  margin-bottom: 20rpx;
+}
+
+.svc-hero-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #0d7377;
+  margin-bottom: 12rpx;
+}
+
+.svc-hero-sub {
+  display: block;
+  font-size: 26rpx;
+  line-height: 1.55;
+}
+
 .page-hint {
   margin-bottom: 20rpx;
   padding: 0 4rpx;
@@ -16,13 +33,31 @@
   border-left: 6rpx solid #0d7377;
 }
 
+.service-card-hover {
+  opacity: 0.92;
+}
+
 .service-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12rpx;
-  flex-wrap: wrap;
-  gap: 12rpx;
+  flex-wrap: nowrap;
+  gap: 16rpx;
+}
+
+.service-head-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 8rpx;
+}
+
+.service-card-arrow {
+  width: 28rpx;
+  height: 28rpx;
+  opacity: 0.4;
+  transform: rotate(-90deg);
 }
 
 .service-name {

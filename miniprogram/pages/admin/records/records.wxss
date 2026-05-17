@@ -7,6 +7,10 @@
   line-height: 1.5;
 }
 
+.export-second {
+  margin-top: 16rpx;
+}
+
 .rec-name {
   font-size: 30rpx;
   font-weight: 600;

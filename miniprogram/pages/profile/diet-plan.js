@@ -1,5 +1,14 @@
 var cloudStore = require("../../utils/cloudStore.js");
-var adminCloud = require("../../utils/adminCloud.js");
+var phoneValidate = require("../../utils/phoneValidate.js");
+
+function toMobile11(v) {
+  return phoneValidate.normalizeMainlandMobile(v);
+}
+
+/** 输入过程中只过滤数字、最多 11 位，不要用 toMobile11（未满 11 位会变成空） */
+function digitsInput(v) {
+  return phoneValidate.digitsInputSlice11(v);
+}
 
 Page({
   data: {
@@ -10,50 +19,59 @@ Page({
   },
 
   onShow: function () {
-    var phone = cloudStore.getResidentBindPhone();
-    this.setData({ phone: phone || "" });
-    if (phone) {
-      this.loadPlan(phone);
-    } else {
-      this.setData({
-        plan: null,
-        emptyHint: "请先在「预约」页提交一次预约，或下方填写预约时使用的手机号。",
-      });
-    }
+    this.setData({
+      phone: "",
+      plan: null,
+      emptyHint: "",
+      loading: false,
+    });
   },
 
   onPhoneInput: function (e) {
-    this.setData({ phone: e.detail.value });
+    this.setData({ phone: digitsInput(e.detail.value) });
   },
 
   loadPlan: function (phone) {
     var that = this;
-    var p = (phone || "").trim();
-    if (!/^1\d{10}$/.test(p)) {
-      wx.showToast({ title: "请输入11位手机号", icon: "none" });
+    var p = toMobile11(phone);
+    if (!p) {
+      var pv = phoneValidate.validatePhoneSubmit(phone);
+      wx.showToast({
+        title: pv.ok === false ? pv.message : "手机号格式不正确",
+        icon: "none",
+      });
+      this.setData({ loading: false });
       return;
     }
-    this.setData({ loading: true, emptyHint: "" });
-    adminCloud
+    this.setData({ loading: true, emptyHint: "", phone: p });
+    cloudStore
       .getDietPlanByPhone(p)
       .then(function (doc) {
         if (doc) {
           that.setData({
-            plan: doc,
+            plan: {
+              title: doc.title || "",
+              advice: doc.advice || "",
+              content: doc.content || "",
+              residentName: doc.residentName || "",
+              linkedRecipe: doc.linkedRecipe || "",
+            },
             emptyHint: "",
           });
         } else {
           that.setData({
             plan: null,
-            emptyHint: "暂无与您手机号关联的食疗方案（演示数据由管理后台推送）。",
+            emptyHint:
+              "暂无与您手机号关联的食疗方案。请确认管理后台「食疗方案」中该手机号的记录已保存，或在后台执行「初始化演示数据」。",
           });
         }
       })
       .catch(function () {
         that.setData({
           plan: null,
-          emptyHint: "云开发不可用或未创建集合 diet_plans。",
+          emptyHint: "",
         });
+        wx.showToast({ title: "内容加载失败", icon: "none" });
       })
       .then(function () {
         that.setData({ loading: false });
@@ -61,8 +79,22 @@ Page({
   },
 
   onQuery: function () {
-    var p = (this.data.phone || "").trim();
-    cloudStore.setResidentBindPhone(p);
+    var raw = this.data.phone;
+    var pv = phoneValidate.validatePhoneSubmit(raw);
+    if (!pv.ok) {
+      wx.showToast({ title: pv.message, icon: "none" });
+      return;
+    }
+    var p = pv.normalized;
+    this.setData({ phone: p });
+    var wr = cloudStore.setCurrentResidentPhone(p);
+    if (!wr.ok) {
+      wx.showToast({
+        title: cloudStore.LOCAL_STORAGE_FAIL_MSG,
+        icon: "none",
+      });
+      return;
+    }
     this.loadPlan(p);
   },
 });

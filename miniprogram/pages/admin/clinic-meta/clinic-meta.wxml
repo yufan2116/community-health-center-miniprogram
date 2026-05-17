@@ -1,0 +1,85 @@
+<view class="container admin-page">
+  <view class="card">
+    <view class="card-title">科室</view>
+    <text class="cm-hint">删除科室将同时移除其下医生（演示版逻辑）。</text>
+    <view class="admin-field">
+      <text class="admin-label">名称</text>
+      <input
+        class="admin-input"
+        placeholder="科室名称"
+        value="{{deptName}}"
+        bindinput="onDeptName"
+      />
+    </view>
+    <button class="btn-primary" loading="{{savingDept}}" bindtap="saveDept">
+      {{editingDeptId ? '保存修改' : '新增科室'}}
+    </button>
+    <button
+      wx:if="{{editingDeptId}}"
+      class="btn-admin"
+      bindtap="cancelDeptEdit"
+    >
+      取消编辑
+    </button>
+    <view class="cm-list-title">科室列表</view>
+    <view class="card item-card" wx:for="{{deptList}}" wx:key="_id">
+      <view class="rec-title">{{item.name}}</view>
+      <view class="cm-row-actions">
+        <button class="cm-btn-sm" data-id="{{item.id}}" bindtap="editDept">编辑</button>
+        <button class="cm-btn-sm danger" data-id="{{item.id}}" bindtap="deleteDept">
+          删除
+        </button>
+      </view>
+    </view>
+    <view wx:if="{{deptList.length === 0}}" class="text-muted cm-empty">
+      暂无科室，可上方新增或到控制台「初始化演示数据」
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">医生</view>
+    <view class="admin-field">
+      <text class="admin-label">所属科室</text>
+      <picker
+        mode="selector"
+        range="{{deptPickerNames}}"
+        value="{{docDeptIndex}}"
+        bindchange="onDocDeptChange"
+      >
+        <view class="admin-input picker-like">{{deptPickerNames[docDeptIndex]}}</view>
+      </picker>
+    </view>
+    <view class="admin-field">
+      <text class="admin-label">姓名</text>
+      <input
+        class="admin-input"
+        placeholder="医生姓名"
+        value="{{docName}}"
+        bindinput="onDocName"
+      />
+    </view>
+    <button class="btn-primary" loading="{{savingDoc}}" bindtap="saveDoc">
+      {{editingDocId ? '保存修改' : '新增医生'}}
+    </button>
+    <button wx:if="{{editingDocId}}" class="btn-admin" bindtap="cancelDocEdit">
+      取消编辑
+    </button>
+    <view class="cm-list-title">医生列表</view>
+    <view wx:if="{{loading}}" class="text-muted state-center">加载中…</view>
+    <view class="card item-card" wx:for="{{docRows}}" wx:key="_id">
+      <view class="rec-title">{{item.name}}</view>
+      <text class="cm-doc-line">
+        科室：<text class="cm-dept-tag">{{item.departmentName || '—'}}</text>
+      </text>
+      <view class="cm-row-actions">
+        <button class="cm-btn-sm" data-id="{{item.id}}" bindtap="editDoc">编辑</button>
+        <button class="cm-btn-sm danger" data-id="{{item.id}}" bindtap="deleteDoc">
+          删除
+        </button>
+      </view>
+    </view>
+    <view wx:if="{{!loading && docRows.length === 0}}" class="text-muted cm-empty">
+      暂无医生，请先新增科室再添加医生，或执行「初始化演示数据」
+    </view>
+  </view>
+</view>

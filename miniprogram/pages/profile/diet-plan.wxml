@@ -4,19 +4,28 @@
     <text class="text-muted hint-line">
       食疗方案由管理员在后台为您生成，通过预约手机号关联（演示）。
     </text>
-    <view class="form-row diet-row">
+    <text class="text-muted demo-hint">
+      请在下方手动输入 11 位大陆手机号，点击「查询方案」后显示结果（进入本页不会自动查询）。演示数据可使用已在后台「食疗方案」中维护的号码，或先执行管理端「重新初始化演示数据」。
+    </text>
+    <view class="diet-input-wrap">
       <input
         class="diet-input"
-        type="number"
+        type="digit"
         maxlength="11"
-        placeholder="预约使用的11位手机号"
+        placeholder="手动输入手机号后点查询"
         value="{{phone}}"
+        confirm-type="search"
+        bindconfirm="onQuery"
         bindinput="onPhoneInput"
       />
     </view>
-    <button class="btn-primary" bindtap="onQuery" loading="{{loading}}">
+    <view
+      class="btn-primary diet-query-btn"
+      hover-class="diet-query-hover"
+      bindtap="onQuery"
+    >
       查询方案
-    </button>
+    </view>
   </view>
 
   <view wx:if="{{loading}}" class="text-muted state-t">加载中…</view>
@@ -26,10 +35,12 @@
     <view class="text-muted plan-meta" wx:if="{{plan.residentName}}">
       居民：{{plan.residentName}}
     </view>
+    <view class="plan-label">方案说明</view>
     <view class="plan-body">{{plan.advice || plan.content || ''}}</view>
     <view class="text-muted plan-extra" wx:if="{{plan.linkedRecipe}}">
-      参考菜谱：{{plan.linkedRecipe}}
+      参考与搭配：{{plan.linkedRecipe}}
     </view>
+    <view class="plan-disclaimer text-muted">以上内容仅供社区健康宣教参考，具体饮食与用药请以医务人员面诊意见为准。</view>
   </view>
 
   <view wx:if="{{!loading && !plan && emptyHint}}" class="text-muted state-t">

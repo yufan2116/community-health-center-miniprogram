@@ -1,0 +1,40 @@
+@import "../article-edit/article-edit.wxss";
+
+.theme-preview-wrap {
+  position: relative;
+  width: 100%;
+  height: 320rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e0f2f1 0%, #f0f4f3 100%);
+  margin-bottom: 24rpx;
+}
+
+.theme-preview-img {
+  width: 100%;
+  height: 100%;
+}
+
+.theme-preview-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 28rpx;
+  color: #64748b;
+  padding: 24rpx;
+  text-align: center;
+}
+
+.theme-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.theme-hint {
+  font-size: 24rpx;
+  color: #64748b;
+  line-height: 1.55;
+  margin-bottom: 20rpx;
+}

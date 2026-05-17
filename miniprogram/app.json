@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/index/notice-detail",
     "pages/services/services",
+    "pages/services/service-detail",
     "pages/appointment/appointment",
     "pages/education/education",
     "pages/profile/profile",
@@ -9,20 +11,26 @@
     "pages/profile/appointments",
     "pages/profile/feedback",
     "pages/profile/diet-plan",
+    "pages/profile/personal-archive",
     "pages/admin/login/login",
     "pages/admin/dashboard/dashboard",
+    "pages/admin/export-center/export-center",
     "pages/admin/appointments/appointments",
     "pages/admin/records/records",
+    "pages/admin/resident-archives/resident-archives",
+    "pages/admin/resident-archive-detail/resident-archive-detail",
     "pages/admin/articles/articles",
     "pages/admin/article-edit/article-edit",
+    "pages/admin/education-theme/education-theme",
     "pages/admin/recipes/recipes",
-    "pages/admin/diet-plans/diet-plans"
+    "pages/admin/diet-plans/diet-plans",
+    "pages/admin/clinic-meta/clinic-meta"
   ],
   "window": {
     "backgroundColor": "#f0f4f3",
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "南湖凤岭北社区卫服",
+    "navigationBarTitleText": "XX卫生服务中心",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

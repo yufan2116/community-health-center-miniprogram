@@ -1,0 +1,27 @@
+<view class="container admin-page">
+  <view class="card">
+    <view class="card-title">居民自填健康档案</view>
+    <text class="ra-sub">仅查看与导出，后台不修改居民填写内容。数据来自本机 Storage 演示键 local_resident_personal_archives。</text>
+    <button class="btn-primary" loading="{{exporting}}" bindtap="exportCsv">导出 Excel（CSV）</button>
+    <button class="btn-admin" bindtap="copyCsv">复制为 CSV</button>
+    <button class="btn-admin" bindtap="load">刷新</button>
+  </view>
+
+  <view wx:if="{{loading}}" class="text-muted state-center">加载中…</view>
+
+  <view
+    class="card item-card"
+    wx:for="{{list}}"
+    wx:key="phone"
+    data-phone="{{item.phone}}"
+    bindtap="openDetail"
+  >
+    <view class="ra-name">{{item.residentName || '（未填姓名）'}}</view>
+    <text class="ra-phone">{{item.phone}}</text>
+    <text class="ra-meta">最近更新 {{item._updatedText}}</text>
+  </view>
+
+  <view wx:if="{{!loading && list.length===0}}" class="text-muted state-center">
+    暂无居民填写记录，可在居民端「服务-居民健康档案管理」或「我的-我的健康档案」填写
+  </view>
+</view>

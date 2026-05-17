@@ -1,5 +1,23 @@
-<view class="container admin-page">
+<view wx:if="{{loadMissing}}" class="container admin-page text-muted art-missing">
+  文章不存在或已删除，请返回宣教列表。
+</view>
+<view wx:elif="{{loadFailed}}" class="container admin-page text-muted art-missing">
+  内容加载失败，请返回重试。
+</view>
+<view wx:else class="container admin-page">
   <view class="card">
+    <view class="admin-field">
+      <text class="admin-label">配图</text>
+      <text class="admin-hint">列表卡片与居民端详情顶部展示；支持 JPG/PNG/WebP/GIF（GIF 会动图播放，建议体积小一些）。上传保存在本机用户目录 education-articles（演示版）。</text>
+      <view class="art-cover-row">
+        <image wx:if="{{coverImage}}" class="art-cover-preview" src="{{coverImage}}" mode="aspectFill" />
+        <view wx:else class="art-cover-placeholder">未选择配图</view>
+        <view class="art-cover-btns">
+          <button class="btn-mini" size="mini" bindtap="pickCover">选择图片</button>
+          <button wx:if="{{coverImage}}" class="btn-mini btn-mini-muted" size="mini" bindtap="clearCover">移除</button>
+        </view>
+      </view>
+    </view>
     <view class="admin-field">
       <text class="admin-label">标题</text>
       <input
@@ -21,6 +39,21 @@
     </view>
     <view class="admin-field">
       <text class="admin-label">正文</text>
+      <text class="admin-hint">
+        可使用下方预设图插入占位符（来自 /images/education-articles/），居民端会显示为图片。格式：[[IMG:路径]]
+      </text>
+      <view class="preset-row">
+        <text class="preset-label">预设配图</text>
+        <picker
+          mode="selector"
+          range="{{presetLabels}}"
+          value="{{presetPickIndex}}"
+          bindchange="onPresetPickChange"
+        >
+          <view class="admin-input picker-like preset-picker">{{presetPickLabel || '请选择'}}</view>
+        </picker>
+        <button class="btn-mini" size="mini" bindtap="insertPresetImage">插入到正文</button>
+      </view>
       <textarea
         class="admin-textarea large"
         placeholder="正文内容"

@@ -1,0 +1,7 @@
+@import "../resident-archives/resident-archives.wxss";
+
+.ro-note {
+  font-size: 24rpx;
+  color: #94a3b8;
+  margin-bottom: 16rpx;
+}

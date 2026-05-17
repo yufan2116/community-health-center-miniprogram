@@ -1,7 +1,11 @@
 <view class="container admin-page">
   <view class="card">
-    <button class="btn-primary" bindtap="exportCsv">复制全部档案为 CSV</button>
-    <text class="text-muted export-hint">演示：通过剪贴板导出，非文件下载。</text>
+    <view class="card-title">公卫演示档案（非居民自填）</view>
+    <button class="btn-primary" loading="{{exporting}}" bindtap="exportExcel">
+      导出 Excel（CSV 文件）
+    </button>
+    <button class="btn-admin export-second" bindtap="exportCsv">复制全部档案为 CSV</button>
+    <text class="text-muted export-hint">文件导出：可选发送到微信、其它应用打开或复制。完整功能亦在「数据导出」页。</text>
   </view>
 
   <view wx:if="{{loading}}" class="text-muted state-center">加载中…</view>

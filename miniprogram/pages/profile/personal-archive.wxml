@@ -1,0 +1,241 @@
+<view wx:if="{{!hasPhone}}" class="container">
+  <view class="pa-block card">
+    <view class="pa-block-title">需先绑定手机号</view>
+    <text class="text-muted pa-tip">健康档案按绑定身份保存，与「我的预约」演示规则一致。</text>
+    <button class="btn-primary" bindtap="goProfile">去「我的」绑定</button>
+  </view>
+</view>
+
+<view class="pa-page" wx:else>
+  <scroll-view scroll-y class="pa-scroll" enable-back-to-top="{{true}}">
+    <view class="pa-notice">
+      <view class="pa-notice-hd">温馨提示</view>
+      <text class="pa-notice-txt">
+        以下为本人自愿填写的演示信息，不能替代诊疗；请勿填写完整敏感证件号。标有「必填」的项保存前须填写完整；史况类若无请填「无」。
+      </text>
+      <view class="pa-identity">
+        <text class="pa-identity-label">当前绑定</text>
+        <text class="pa-phone">{{phoneDisplay}}</text>
+      </view>
+    </view>
+
+    <view class="pa-card">
+      <view class="pa-sec-title">基本信息 <text class="pa-req-tag">必填</text></view>
+      <view class="pa-row">
+        <text class="pa-label">姓名<text class="pa-star">*</text></text>
+        <input
+          class="pa-input"
+          placeholder="请输入真实姓名"
+          value="{{form.residentName}}"
+          data-k="residentName"
+          bindinput="onField"
+        />
+      </view>
+      <view class="pa-row">
+        <text class="pa-label">性别<text class="pa-star">*</text></text>
+        <input
+          class="pa-input"
+          placeholder="如：男、女"
+          value="{{form.gender}}"
+          data-k="gender"
+          bindinput="onField"
+        />
+      </view>
+      <view class="pa-row">
+        <text class="pa-label">出生日期<text class="pa-star">*</text></text>
+        <picker mode="date" value="{{form.birthDate}}" bindchange="onBirthPick">
+          <view class="pa-input pa-input-picker {{form.birthDate ? '' : 'is-placeholder'}}">
+            {{form.birthDate || '请选择出生日期（必填）'}}
+          </view>
+        </picker>
+      </view>
+      <view class="pa-row">
+        <text class="pa-label">民族</text>
+        <input
+          class="pa-input"
+          placeholder="民族"
+          value="{{form.nation}}"
+          data-k="nation"
+          bindinput="onField"
+        />
+      </view>
+      <view class="pa-row">
+        <text class="pa-label">证件号</text>
+        <text class="pa-label-hint">可只填后几位，演示勿填完整号</text>
+        <input
+          class="pa-input"
+          placeholder="如末 4 位或留空"
+          value="{{form.idNumber}}"
+          data-k="idNumber"
+          bindinput="onField"
+        />
+      </view>
+      <view class="pa-row">
+        <text class="pa-label">常住地址<text class="pa-star">*</text></text>
+        <textarea
+          class="pa-textarea pa-textarea-address"
+          auto-height
+          maxlength="500"
+          placeholder="省市区街道门牌等（必填）"
+          value="{{form.address}}"
+          data-k="address"
+          bindinput="onField"
+        />
+      </view>
+      <view class="pa-row">
+        <text class="pa-label">职业</text>
+        <input
+          class="pa-input"
+          placeholder="职业或退休等"
+          value="{{form.occupation}}"
+          data-k="occupation"
+          bindinput="onField"
+        />
+      </view>
+    </view>
+
+    <view class="pa-card">
+      <view class="pa-sec-title">紧急联系人</view>
+      <text class="pa-sec-sub text-muted">选填；若填写电话须为 11 位手机号，且姓名与电话需同时填写。</text>
+      <view class="pa-row">
+        <text class="pa-label">姓名</text>
+        <input
+          class="pa-input"
+          value="{{form.emergencyName}}"
+          data-k="emergencyName"
+          bindinput="onField"
+        />
+      </view>
+      <view class="pa-row">
+        <text class="pa-label">联系电话</text>
+        <input
+          class="pa-input"
+          type="digit"
+          maxlength="11"
+          placeholder="11位手机号"
+          value="{{form.emergencyPhone}}"
+          data-k="emergencyPhone"
+          bindinput="onField"
+        />
+      </view>
+    </view>
+
+    <view class="pa-card">
+      <view class="pa-sec-title">健康信息</view>
+      <view class="pa-row">
+        <text class="pa-label">血型</text>
+        <input
+          class="pa-input"
+          placeholder="如 A 型、未知"
+          value="{{form.bloodType}}"
+          data-k="bloodType"
+          bindinput="onField"
+        />
+      </view>
+      <view class="pa-row">
+        <text class="pa-label">身高（cm）</text>
+        <input
+          class="pa-input"
+          type="digit"
+          placeholder="数字"
+          value="{{form.heightCm}}"
+          data-k="heightCm"
+          bindinput="onField"
+        />
+      </view>
+      <view class="pa-row">
+        <text class="pa-label">体重（kg）</text>
+        <input
+          class="pa-input"
+          type="digit"
+          placeholder="数字"
+          value="{{form.weightKg}}"
+          data-k="weightKg"
+          bindinput="onField"
+        />
+      </view>
+      <view class="pa-row">
+        <text class="pa-label">健康状况说明</text>
+        <textarea
+          class="pa-textarea"
+          placeholder="慢性病、用药概况、近期不适等（非诊断）"
+          value="{{form.healthNote}}"
+          data-k="healthNote"
+          bindinput="onField"
+        />
+      </view>
+    </view>
+
+    <view class="pa-card">
+      <view class="pa-sec-title">过敏史 <text class="pa-req-tag">必填</text></view>
+      <textarea
+        class="pa-textarea"
+        placeholder="无过敏请填「无」"
+        value="{{form.allergies}}"
+        data-k="allergies"
+        bindinput="onField"
+      />
+    </view>
+
+    <view class="pa-card">
+      <view class="pa-sec-title">暴露史 <text class="pa-req-tag">必填</text></view>
+      <textarea
+        class="pa-textarea"
+        placeholder="无则填「无」"
+        value="{{form.exposureHistory}}"
+        data-k="exposureHistory"
+        bindinput="onField"
+      />
+    </view>
+
+    <view class="pa-card">
+      <view class="pa-sec-title">既往史 <text class="pa-req-tag">必填</text></view>
+      <textarea
+        class="pa-textarea"
+        placeholder="无则填「无」"
+        value="{{form.pastHistory}}"
+        data-k="pastHistory"
+        bindinput="onField"
+      />
+    </view>
+
+    <view class="pa-card">
+      <view class="pa-sec-title">家族史 <text class="pa-req-tag">必填</text></view>
+      <textarea
+        class="pa-textarea"
+        placeholder="无则填「无」"
+        value="{{form.familyHistory}}"
+        data-k="familyHistory"
+        bindinput="onField"
+      />
+    </view>
+
+    <view class="pa-card">
+      <view class="pa-sec-title">遗传病史 <text class="pa-req-tag">必填</text></view>
+      <textarea
+        class="pa-textarea"
+        placeholder="无则填「无」"
+        value="{{form.geneticHistory}}"
+        data-k="geneticHistory"
+        bindinput="onField"
+      />
+    </view>
+
+    <view class="pa-card">
+      <view class="pa-sec-title">残疾状况 <text class="pa-req-tag">必填</text></view>
+      <textarea
+        class="pa-textarea"
+        placeholder="无则填「无」"
+        value="{{form.disabilityStatus}}"
+        data-k="disabilityStatus"
+        bindinput="onField"
+      />
+    </view>
+
+    <view style="height: 24rpx" />
+  </scroll-view>
+
+  <view class="pa-footer">
+    <button class="btn-primary pa-save-btn" loading="{{saving}}" bindtap="save">保存档案</button>
+  </view>
+</view>

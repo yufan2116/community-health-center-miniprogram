@@ -38,3 +38,8 @@
   font-size: 28rpx;
   border: 1rpx solid #e2e8f0;
 }
+
+.fb-req {
+  color: #dc2626;
+  margin-left: 4rpx;
+}

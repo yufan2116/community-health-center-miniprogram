@@ -1,0 +1,12 @@
+<view class="container page-detail" wx:if="{{pageState === 'ok' && notice}}">
+  <view class="detail-header">
+    <view class="detail-title">{{notice.title}}</view>
+    <view class="detail-meta text-muted">{{notice.date}}</view>
+  </view>
+  <view class="detail-body">{{notice.content}}</view>
+  <view class="detail-footer text-muted">— 演示内容 · 请以中心现场公示为准 —</view>
+</view>
+
+<view wx:if="{{pageState === 'missing'}}" class="container page-detail notice-empty text-muted">
+  公告不存在或链接有误，请返回首页查看通知列表。
+</view>

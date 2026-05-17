@@ -1,5 +1,6 @@
 var adminAuth = require("../../../utils/adminAuth.js");
 var adminCloud = require("../../../utils/adminCloud.js");
+var phoneValidate = require("../../../utils/phoneValidate.js");
 
 Page({
   data: {
@@ -29,12 +30,13 @@ Page({
       .then(function (res) {
         var rows = (res.data || []).slice();
         rows.sort(function (a, b) {
-          return (b.createTime || 0) - (a.createTime || 0);
+          return (b.createdAt || b.createTime || 0) - (a.createdAt || a.createTime || 0);
         });
         that.setData({ list: rows });
       })
       .catch(function () {
         that.setData({ list: [] });
+        wx.showToast({ title: "数据加载失败", icon: "none" });
       })
       .then(function () {
         that.setData({ loading: false });
@@ -60,8 +62,9 @@ Page({
   add: function () {
     var that = this;
     var phone = (this.data.phone || "").trim();
-    if (!/^1\d{10}$/.test(phone)) {
-      wx.showToast({ title: "请填写居民11位手机", icon: "none" });
+    var pv = phoneValidate.validatePhoneSubmit(phone);
+    if (!pv.ok) {
+      wx.showToast({ title: pv.message, icon: "none" });
       return;
     }
     var title = (this.data.title || "").trim();
@@ -71,14 +74,21 @@ Page({
     }
     this.setData({ adding: true });
     adminCloud
-      .addDietPlan({
-        phone: phone,
+      .saveDietPlan({
+        phone: pv.normalized,
         residentName: (this.data.residentName || "").trim(),
         title: title,
         advice: (this.data.advice || "").trim(),
         linkedRecipe: (this.data.linkedRecipe || "").trim(),
       })
-      .then(function () {
+      .then(function (res) {
+        if (res && res.ok === false) {
+          wx.showToast({
+            title: res.message || "本地存储失败，请清理缓存后重试",
+            icon: "none",
+          });
+          return;
+        }
         wx.showToast({ title: "已推送", icon: "success" });
         that.setData({
           phone: "",
@@ -108,7 +118,14 @@ Page({
         if (!r.confirm) return;
         adminCloud
           .deleteDietPlan(id)
-          .then(function () {
+          .then(function (res) {
+            if (res && res.ok === false) {
+              wx.showToast({
+                title: res.message || "本地存储失败，请清理缓存后重试",
+                icon: "none",
+              });
+              return;
+            }
             wx.showToast({ title: "已删除", icon: "success" });
             that.load();
           })

@@ -1,0 +1,32 @@
+<view class="container admin-page">
+  <view class="card">
+    <view class="card-title">居民端「健康宣教」顶栏背景</view>
+    <text class="theme-hint">
+      选择图片后将保存到本机用户目录，并写入本地 Storage（演示版）。建议横图或方图，系统会裁切铺满顶栏。清除后居民端恢复默认样式。
+    </text>
+
+    <view class="theme-preview-wrap">
+      <image
+        wx:if="{{heroImagePath}}"
+        class="theme-preview-img"
+        src="{{heroImagePath}}"
+        mode="aspectFill"
+      />
+      <view wx:else class="theme-preview-placeholder">暂无背景图，点击下方上传</view>
+    </view>
+
+    <view class="theme-actions">
+      <button class="btn-primary" loading="{{uploading}}" bindtap="pickImage">
+        从相册选择 / 拍照
+      </button>
+      <button
+        class="btn-admin"
+        disabled="{{!heroImagePath}}"
+        loading="{{clearing}}"
+        bindtap="clearImage"
+      >
+        清除背景图
+      </button>
+    </view>
+  </view>
+</view>

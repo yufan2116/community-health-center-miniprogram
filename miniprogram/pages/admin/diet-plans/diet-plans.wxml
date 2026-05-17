@@ -63,4 +63,8 @@
     <text class="dp-advice">{{item.advice}}</text>
     <text class="text-muted dp-line" wx:if="{{item.linkedRecipe}}">参考：{{item.linkedRecipe}}</text>
   </view>
+
+  <view wx:if="{{!loading && list.length===0}}" class="text-muted state-center">
+    暂无食疗方案，可在上方表单推送或执行「初始化演示数据」
+  </view>
 </view>

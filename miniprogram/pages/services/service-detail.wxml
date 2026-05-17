@@ -1,0 +1,28 @@
+<view class="container page-detail" wx:if="{{pageState === 'ok' && service}}">
+  <view class="detail-header">
+    <view class="detail-title">{{service.name}}</view>
+    <view class="detail-meta text-muted">
+      <text class="tag">{{service.tag}}</text>
+    </view>
+  </view>
+  <view class="detail-body">{{service.content}}</view>
+  <button
+    wx:if="{{service.key !== 'archive'}}"
+    class="btn-primary service-detail-book"
+    bindtap="goAppointment"
+  >
+    立即预约此项服务
+  </button>
+  <button
+    wx:else
+    class="btn-primary service-detail-book"
+    bindtap="goPersonalArchive"
+  >
+    填写我的健康档案
+  </button>
+  <view class="detail-footer text-muted">— 演示内容 · 请以中心现场公示为准 —</view>
+</view>
+
+<view wx:if="{{pageState === 'missing'}}" class="container page-detail svc-empty text-muted">
+  服务不存在或链接有误，请返回「服务」列表重新选择。
+</view>

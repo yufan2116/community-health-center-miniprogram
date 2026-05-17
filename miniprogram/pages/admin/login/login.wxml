@@ -2,7 +2,7 @@
   <view class="admin-page-inner">
     <view class="card admin-card">
       <view class="card-title">管理员登录</view>
-      <text class="text-muted admin-tip">演示独立账号，与普通居民无关。登录后可在「管理后台」内使用「初始化演示数据」写入示例；默认账号一般为 admin / admin123。</text>
+      <text class="text-muted admin-tip">演示独立账号，与普通居民无关。当前为本地校验（账号 admin，密码 admin123）。登录后可使用「初始化演示数据」写入本机 Storage 示例。</text>
       <view class="admin-field">
         <text class="admin-label">账号</text>
         <input

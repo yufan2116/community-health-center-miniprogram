@@ -4,31 +4,31 @@
     <view class="text-muted form-tip">演示版仅用于作业展示；正式预约请以卫生机构规定为准。</view>
 
     <view class="form-row">
-      <text class="form-label">姓名</text>
+      <text class="form-label">姓名<text class="form-req">*</text></text>
       <input
         class="form-input"
-        placeholder="请输入真实姓名"
+        placeholder="请输入真实姓名（必填）"
         value="{{name}}"
         bindinput="onNameInput"
       />
     </view>
 
     <view class="form-row">
-      <text class="form-label">手机</text>
+      <text class="form-label">手机<text class="form-req">*</text></text>
       <input
         class="form-input"
         type="number"
         maxlength="11"
-        placeholder="11位手机号码"
+        placeholder="11位大陆手机号（必填）"
         value="{{phone}}"
         bindinput="onPhoneInput"
       />
     </view>
 
     <view class="form-row">
-      <text class="form-label">日期</text>
+      <text class="form-label">日期<text class="form-req">*</text></text>
       <picker mode="date" value="{{date}}" bindchange="onDateChange">
-        <view class="form-picker">{{date || '请选择预约日期'}}</view>
+        <view class="form-picker {{date ? '' : 'form-picker-placeholder'}}">{{date || '请选择预约日期（必填）'}}</view>
       </picker>
     </view>
 
@@ -44,7 +44,38 @@
       </picker>
     </view>
 
-    <view class="form-row">
+    <block wx:if="{{isRegistration}}">
+      <view wx:if="{{!departmentNames.length}}" class="text-muted form-tip reg-tip">
+        暂无科室数据，请管理员在控制台「科室与医生」中维护后再预约。
+      </view>
+      <view class="form-row" wx:if="{{departmentNames.length}}">
+        <text class="form-label">科室</text>
+        <picker
+          mode="selector"
+          range="{{departmentNames}}"
+          value="{{departmentIndex}}"
+          bindchange="onDepartmentChange"
+        >
+          <view class="form-picker">{{departmentNames[departmentIndex]}}</view>
+        </picker>
+      </view>
+      <view class="form-row" wx:if="{{departmentNames.length && doctorNames.length}}">
+        <text class="form-label">医生</text>
+        <picker
+          mode="selector"
+          range="{{doctorNames}}"
+          value="{{doctorIndex}}"
+          bindchange="onDoctorChange"
+        >
+          <view class="form-picker">{{doctorNames[doctorIndex]}}</view>
+        </picker>
+      </view>
+      <view wx:if="{{departmentNames.length && !doctorNames.length}}" class="text-muted form-tip reg-tip">
+        当前科室暂无出诊医生，请更换科室或联系管理员。
+      </view>
+    </block>
+
+    <view class="form-row" wx:if="{{!isRegistration}}">
       <text class="form-label">分类</text>
       <picker
         mode="selector"
@@ -54,6 +85,11 @@
       >
         <view class="form-picker">{{categories[categoryIndex]}}</view>
       </picker>
+    </view>
+
+    <view wx:if="{{isRegistration}}" class="form-row form-row-static">
+      <text class="form-label">分类</text>
+      <text class="form-picker form-static">门诊（挂号默认）</text>
     </view>
 
     <button class="btn-primary" loading="{{submitting}}" bindtap="submit">

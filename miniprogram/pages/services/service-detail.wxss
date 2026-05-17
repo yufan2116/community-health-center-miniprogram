@@ -1,0 +1,12 @@
+@import "../education/detail.wxss";
+
+.service-detail-book {
+  width: 100%;
+  margin-top: 24rpx;
+}
+
+.svc-empty {
+  padding: 80rpx 40rpx;
+  line-height: 1.6;
+  text-align: center;
+}

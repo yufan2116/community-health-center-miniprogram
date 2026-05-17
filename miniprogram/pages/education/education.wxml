@@ -1,8 +1,24 @@
 <view class="container page-edu">
-  <view class="text-muted page-hint">健康科普文章仅供学习参考，不能替代医务人员诊疗意见。列表来自云库已发布文章，无数据时使用本地示例。</view>
+  <view class="edu-hero-wrap card {{heroBg ? 'has-bg' : ''}}">
+    <image
+      wx:if="{{heroBg}}"
+      class="edu-hero-bg"
+      src="{{heroBg}}"
+      mode="aspectFill"
+    />
+    <view class="edu-hero-overlay" />
+    <view class="edu-hero-inner">
+      <view class="edu-hero-title">健康宣教</view>
+      <text class="edu-hero-sub">国家基本公共卫生服务与健康科普，按主题持续更新。以下为演示内容。</text>
+    </view>
+  </view>
+
+  <view class="text-muted page-hint">文章仅供学习参考，不能替代医务人员诊疗意见。当前为本地演示版：优先展示本机已发布文章；无数据时使用内置示例。</view>
 
   <view wx:if="{{loading}}" class="text-muted edu-loading">加载中…</view>
   <view wx:if="{{!loading && list.length === 0}}" class="text-muted edu-loading">暂无已发布文章</view>
+
+  <view class="edu-section-title" wx:if="{{!loading && list.length > 0}}">宣教文章</view>
 
   <view
     class="article-card"
@@ -11,6 +27,12 @@
     data-id="{{item.id}}"
     bindtap="openDetail"
   >
+    <image
+      wx:if="{{item.coverImage}}"
+      class="article-cover"
+      src="{{item.coverImage}}"
+      mode="aspectFill"
+    />
     <view class="article-title">{{item.title}}</view>
     <view class="article-summary text-muted">{{item.summary}}</view>
     <view class="article-meta">

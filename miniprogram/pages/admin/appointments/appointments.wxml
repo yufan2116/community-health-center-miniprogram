@@ -1,4 +1,12 @@
 <view class="container admin-page">
+  <view class="card">
+    <button class="btn-primary" loading="{{exporting}}" bindtap="exportExcel">
+      导出 Excel（CSV 文件）
+    </button>
+    <button class="btn-admin export-second" bindtap="copyCsv">复制当前列表为 CSV</button>
+    <text class="text-muted export-hint">与「数据导出」页相同格式；分类筛选对导出生效。</text>
+  </view>
+
   <view class="card filter-card">
     <text class="filter-label">分类筛选</text>
     <picker
@@ -26,6 +34,10 @@
       <text class="k">服务</text>
       <text class="v">{{item.serviceType}}</text>
     </view>
+    <view class="row-line" wx:if="{{item.departmentName || item.doctorName}}">
+      <text class="k">科室/医生</text>
+      <text class="v">{{item.departmentName || '—'}} / {{item.doctorName || '—'}}</text>
+    </view>
     <view class="row-line">
       <text class="k">日期</text>
       <text class="v">{{item.date}}</text>
@@ -45,6 +57,6 @@
   </view>
 
   <view wx:if="{{!loading && list.length===0}}" class="text-muted state-center">
-    暂无记录（或数据库权限不足）
+    暂无记录，可先「初始化演示数据」或在居民端提交预约
   </view>
 </view>

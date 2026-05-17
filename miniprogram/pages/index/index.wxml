@@ -12,12 +12,23 @@
 
   <view class="card">
     <view class="card-title">通知公告</view>
-    <view class="notice-item" wx:for="{{notices}}" wx:key="id">
+    <view
+      class="notice-item"
+      wx:for="{{notices}}"
+      wx:key="id"
+      hover-class="notice-item-hover"
+      data-id="{{item.id}}"
+      bindtap="openNotice"
+    >
       <view class="notice-dot"></view>
       <view class="notice-body">
         <text class="notice-title">{{item.title}}</text>
         <text class="notice-date text-muted">{{item.date}}</text>
       </view>
+      <image class="notice-row-arrow" src="/images/arrow.svg" mode="aspectFit" />
+    </view>
+    <view wx:if="{{notices.length === 0}}" class="text-muted notice-empty-hint">
+      暂无通知公告
     </view>
   </view>
 

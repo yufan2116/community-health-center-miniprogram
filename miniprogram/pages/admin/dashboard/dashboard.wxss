@@ -24,6 +24,41 @@
   border: 1rpx solid #b8ddd9;
 }
 
+.btn-clear-local {
+  margin-bottom: 20rpx;
+  background: #fffbeb;
+  color: #92400e;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 22rpx;
+  border: 1rpx solid #fcd34d;
+}
+
+.btn-clear-local::after {
+  border: none;
+}
+
+.btn-reseed {
+  margin-bottom: 20rpx;
+  background: #fef2f2;
+  color: #991b1b;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 22rpx;
+  border: 1rpx solid #fecaca;
+}
+
+.btn-reseed::after {
+  border: none;
+}
+
+.data-maintain-hint {
+  display: block;
+  margin-bottom: 24rpx;
+  line-height: 1.5;
+  font-size: 24rpx;
+}
+
 .btn-seed::after {
   border: none;
 }

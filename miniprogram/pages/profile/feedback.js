@@ -1,4 +1,5 @@
 var cloudStore = require("../../utils/cloudStore.js");
+var phoneValidate = require("../../utils/phoneValidate.js");
 
 Page({
   data: {
@@ -22,20 +23,38 @@ Page({
       wx.showToast({ title: "请填写反馈内容", icon: "none" });
       return;
     }
+    var contact = (this.data.contact || "").trim();
+    if (!contact) {
+      wx.showToast({ title: "请填写联系方式", icon: "none" });
+      return;
+    }
+    var onlyDigits = /^\d+$/.test(contact.replace(/\s/g, ""));
+    var contactOut = contact;
+    if (onlyDigits) {
+      var pv = phoneValidate.validatePhoneSubmit(contact);
+      if (!pv.ok) {
+        wx.showToast({ title: pv.message, icon: "none" });
+        return;
+      }
+      contactOut = pv.normalized;
+    }
     if (this.data.submitting) return;
     this.setData({ submitting: true });
 
     cloudStore
       .saveFeedback({
         content: content,
-        contact: this.data.contact,
+        contact: contactOut,
       })
       .then(function (res) {
-        var msg = res.usedLocal
-          ? "已提交（本地演示存储）"
-          : "感谢您的反馈";
-        if (res.fallback) msg = "云端不可用，已本地保存";
-        wx.showToast({ title: msg, icon: "success" });
+        if (res && res.ok === false) {
+          wx.showToast({
+            title: res.message || "本地存储失败，请清理缓存后重试",
+            icon: "none",
+          });
+          return;
+        }
+        wx.showToast({ title: "反馈已提交（本地演示）", icon: "success" });
         that.setData({ content: "", contact: "" });
       })
       .catch(function () {

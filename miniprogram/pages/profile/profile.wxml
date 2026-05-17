@@ -3,7 +3,40 @@
     <view class="avatar" bindtap="onAvatarTap">卫</view>
     <view class="profile-info">
       <text class="profile-name">居民用户（演示）</text>
-      <text class="text-muted profile-sub">南湖凤岭北社区卫生服务中心</text>
+      <text class="text-muted profile-sub">XX卫生服务中心</text>
+    </view>
+  </view>
+
+  <view class="card identity-card">
+    <view class="card-title">居民身份（演示）</view>
+    <text class="identity-tip text-muted">当前绑定写入本机 Storage 键 <text class="identity-key">local_resident_bind_phone</text>；作业演示用手机号区分身份，后续可替换为 openid。</text>
+    <view class="identity-row">
+      <text class="identity-label">当前手机号</text>
+      <text class="identity-value">{{boundDisplay}}</text>
+    </view>
+    <button class="btn-switch-phone" bindtap="openSwitchDialog">切换手机号</button>
+  </view>
+
+  <view
+    class="switch-mask"
+    wx:if="{{showSwitchDialog}}"
+    bindtap="cancelSwitch"
+  >
+    <view class="switch-dialog" catchtap="stopSwitchBubble">
+      <text class="switch-dialog-title">切换绑定手机号</text>
+      <text class="switch-dialog-sub text-muted">保存后将影响「我的预约」「食疗方案」与「我的健康档案」展示。</text>
+      <input
+        class="switch-input"
+        type="digit"
+        maxlength="11"
+        placeholder="请输入11位手机号"
+        value="{{switchInput}}"
+        bindinput="onSwitchInput"
+      />
+      <view class="switch-actions">
+        <button class="switch-btn ghost" bindtap="cancelSwitch">取消</button>
+        <button class="switch-btn primary" bindtap="confirmSwitch">保存</button>
+      </view>
     </view>
   </view>
 
@@ -23,6 +56,11 @@
     <view class="menu-line"></view>
     <view class="menu-item" bindtap="goDietPlan">
       <text class="menu-title">我的食疗方案</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-line"></view>
+    <view class="menu-item" bindtap="goPersonalArchive">
+      <text class="menu-title">我的健康档案</text>
       <text class="menu-arrow">›</text>
     </view>
     <view class="menu-line"></view>
